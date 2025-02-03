@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<style>
+    .scrollbar-custom::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-track {
+        background: #333;
+        border-radius: 6px;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 6px;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        background: #888;
+    }
+</style>
+
+<body class="bg-gray-800 text-gray-300">
+    <div class="flex h-screen">
+        <aside class="w-[425px] bg-gray-800 border-r border-gray-700 grid grid-cols-[auto,1fr] transition-all duration-300">
+            <!-- Coluna 1 -->
+            <div class="flex flex-col justify-between border-r border-gray-700">
+                <!-- Menu Hamburguer -->
+                <div class="p-4">
+                    <button class="p-2 rounded-lg cursor-pointer">
+                        <i class="ri-menu-line text-xl"></i>
+                    </button>
+                </div>
+        
+                <!-- Icônes abaixo do menu hamburguer -->
+                <div class="p-4 flex flex-col space-y-4">
+                    <a class="p-2 rounded-lg cursor-pointer">
+                        <i class="ri-chat-3-fill text-xl text-gray-400"></i>
+                    </a>
+                    <a class="p-2 rounded-lg relative cursor-pointer">
+                        <i class="ri-notification-3-fill text-xl text-indigo-400"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-indigo-400 rounded-full">
+                            5
+                        </span>
+                    </a>
+                    <a class="p-2 rounded-lg cursor-pointer">
+                        <i class="ri-settings-3-fill text-xl text-gray-400"></i>
+                    </a>
+                </div>
+                
+        
+                <!-- User Profile -->
+                <div class="border-t border-gray-700 p-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
+                            <i class="ri-user-line text-gray-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Coluna 2 -->
+            <div class="flex flex-col overflow-hidden">
+                <!-- Menu Hamburguer -->
+                <div class="p-4 border-b border-gray-700">
+                    <h1 class="p-2 ml-3 font-semibold text-xl">Conversas Pendentes</h1>
+                </div>
+                <!-- Navegação -->
+                <nav class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-custom p-4">
+
+                    <div class="p-4 mb-4 text-indigo-800 border border-indigo-300 rounded-lg bg-indigo-50 dark:bg-gray-800 dark:text-indigo-400 dark:border-indigo-800" role="alert">
+                        <div class="flex items-center">
+                          <!-- <i class="ri-information-2-fill"></i> -->
+                          <i class="ri-information-fill text-lg mr-3"></i>
+                          <h3 class="text-lg font-medium">Conversa nº 1</h3>
+                        </div>
+                        <div class="mt-2 mb-4 text-sm">
+                            <p>John Doe</p>
+                            <p class="text-gray-500">Hey there.</p>
+                        </div>
+                        <div class="flex">
+                          <button type="button" class="w-full text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                            Começar a Conversar
+                          </button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 mb-4 text-indigo-800 border border-indigo-300 rounded-lg bg-indigo-50 dark:bg-gray-800 dark:text-indigo-400 dark:border-indigo-800" role="alert">
+                        <div class="flex items-center">
+                          <!-- <i class="ri-information-2-fill"></i> -->
+                          <i class="ri-information-fill text-lg mr-3"></i>
+                          <h3 class="text-lg font-medium">Conversa nº 1</h3>
+                        </div>
+                        <div class="mt-2 mb-4 text-sm">
+                            <p>John Doe</p>
+                            <p class="text-gray-500">Hey there.</p>
+                        </div>
+                        <div class="flex">
+                          <button type="button" class="w-full text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
+                            Começar a Conversar
+                          </button>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+        </aside>              
+
+        <main class="flex-1 flex flex-col">
+
+            <div class="p-5 border-b border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-9 h-9 rounded-full bg-gray-600 flex items-center justify-center">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <h1 class="ml-3 font-semibold text-xl">John Doe</h1>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="flex-1 overflow-y-auto scrollbar-custom p-6 space-y-6 overflow-x-hidden">
+                <div>
+                    <!-- Bot Message -->
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-gray-700 p-4 rounded-e-xl rounded-es-xl shadow max-w-2xl">
+                            <p class="whitespace-pre-wrap break-words">Hey there.</p>
+                        </div>
+                    </div>
+
+                    <!-- User Message -->
+                    <div class="flex items-start space-x-3 justify-end">
+                        <div class="bg-gray-700 p-4 rounded-tl-xl rounded-bl-xl rounded-br-xl shadow max-w-2xl">
+                            <p class="whitespace-pre-wrap break-words">Hi! Nice to meet you.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 bg-gray-800">
+                <div class="flex items-center relative">
+
+                    <button class="group flex justify-center items-center rounded-full outline-none focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-700 focus:bg-gray-50 dark:focus:bg-gray-600 transition-all duration-200 group w-9 h-9 md:mr-3 xs:mr-4">
+                        <i class="ri-attachment-2 text-[25px] opacity-75"></i>
+                    </button>
+    
+                    <!-- Textarea -->
+                    <textarea class="max-w-full w-full px-5 py-3 rounded-lg content-center outline-none text-sm placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 max-h-[5rem] pr-[3.125rem] resize-none scrollbar-hidden scrollbar-custom" cols="30" rows="1" placeholder="Escreva sua mensagem aqui"></textarea>
+                    
+                    <div class="absolute bottom-[.45rem] right-12">
+                        <button class="group flex justify-center items-center rounded-full outline-none focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-700 focus:bg-gray-50 dark:focus:bg-gray-600 transition-all duration-200 toggle-picker-button group w-7 h-7 md:mr-5 xs:mr-4">
+                            <i class="ri-emoji-sticker-line text-[20px] opacity-75"></i>
+                        </button>
+                    </div>
+
+                    <button class="group flex justify-center items-center rounded-full outline-none focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-700 focus:bg-gray-50 dark:focus:bg-gray-600 transition-all duration-200 group w-9 h-9 md:mr-3 xs:mr-4 ml-3">
+                        <i class="ri-mic-line text-[20px] opacity-75"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+</body>
+<script>
+    const textarea = document.querySelector('textarea');
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    const checkMobile = () => {
+        if (window.innerWidth <= 892) {
+            document.querySelector('aside').classList.remove('w-[425px]');
+            document.querySelector('aside').classList.add('w-full');
+            document.querySelector('main').classList.add('hidden');
+        } else {
+            document.querySelector('main').classList.remove('hidden');
+            document.querySelector('aside').classList.remove('w-full');
+            document.querySelector('aside').classList.add('w-[425px]');
+        }
+    }
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+</script>
+</html>
