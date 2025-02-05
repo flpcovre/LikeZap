@@ -1,6 +1,13 @@
 <template>
-    <div class="flex items-center justify-center h-screen bg-blue-500 text-white text-3xl font-bold">
-      Tailwind está funcionando! 🎉
-    </div>
-  </template>
-  
+  <RouterView />
+</template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { initFlowbite } from 'flowbite'
+import { RouterView } from 'vue-router';
+
+onMounted(() => {
+    initFlowbite();
+})
+</script>

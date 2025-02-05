@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// const router = createRouter({
-//   history: createWebHistory(import.meta.env.BASE_URL),
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       component: ,
-//     },
-//   ],
-// })
+import HomeScreen from '@/views/HomeScreen.vue'
 
-// export default router
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeScreen,
+    },
+  ],
+})
+
+export default router
