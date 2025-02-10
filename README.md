@@ -2,7 +2,7 @@
 
 ## About
 
-Aplicação Web sendo Desenvolvida com Vue.js e Laravel para trabalho de TCC do autor Filipe Feitosa Covre.
+Aplicação Web sendo Desenvolvida com Nuxt.js e Laravel para trabalho de TCC do autor Filipe Feitosa Covre.
 
 Consiste em uma interface onde o usuário do sistema tem a capacidade de conversar com os clientes que estão enviando mensagens no WhatsApp, isso por meio da Api do WhatsApp.
 

@@ -1,50 +1,40 @@
-# Etapa de desenvolvimento
-FROM node:18 AS dev
-
-# Diretório de trabalho
+# 1️⃣ Imagem base
+FROM node:18-alpine AS base
 WORKDIR /app
 
-# Instalar dependências
-COPY package*.json ./
-RUN npm install
+# 2️⃣ Copia apenas arquivos essenciais para instalar dependências
+COPY package.json package-lock.json ./
 
-# Copiar o código-fonte para o container
+# 3️⃣ Instala dependências sem cache para otimizar camadas
+RUN npm ci
+
+# 4️⃣ Copia todo o projeto
 COPY . .
 
-# Expor a porta do servidor Vue
-EXPOSE 5173
+# 5️⃣ Ambiente de Desenvolvimento
+FROM base AS development
+ENV NODE_ENV=development
 
-# Comando para rodar o servidor Vue no modo desenvolvimento
+# Exposição da porta
+EXPOSE 3000
+
+# Comando padrão para rodar em modo dev
 CMD ["npm", "run", "dev"]
 
-######################################################################
+# 6️⃣ Ambiente de Produção
+FROM base AS production
+ENV NODE_ENV=production
 
-# Etapa 1: Build da aplicação
-FROM node:18 AS build
-
-# Definir diretório de trabalho no container
-WORKDIR /app
-
-# Copiar os arquivos package.json e package-lock.json
-COPY package*.json ./
-
-# Instalar dependências
-RUN npm install
-
-# Copiar todo o código-fonte para o container
-COPY . .
-
-# Build do projeto para produção
+# Compila o projeto para produção
 RUN npm run build
 
-# Etapa 2: Servir a aplicação
-FROM nginx:alpine
+# Instala apenas dependências de produção
+RUN npm ci --only=production
 
-# Copiar os arquivos de build para o diretório padrão do nginx
-COPY --from=build /app/dist /usr/share/nginx/html
+# Exposição da porta
+EXPOSE 3000
 
-# Expor a porta padrão do nginx
-EXPOSE 80
+# Comando para rodar o Nuxt em produção
+CMD ["node", ".output/server/index.mjs"]
 
-# Comando para iniciar o servidor nginx
-CMD ["nginx", "-g", "daemon off;"]
+# RUN TO PRODUCTION $ NODE_ENV=production docker-compose up --build
