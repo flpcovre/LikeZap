@@ -8,7 +8,7 @@ export default {
     "./nuxt.config.{js,ts}",
     "./node_modules/flowbite/**/*.{js,ts}"
   ],
-  darkMode: "class",
+  // darkMode: "class",
   theme: {
     extend: {},
   },
