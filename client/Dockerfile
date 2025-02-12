@@ -28,13 +28,10 @@ ENV NODE_ENV=production
 # Compila o projeto para produção
 RUN npm run build
 
-# Instala apenas dependências de produção
-RUN npm ci --only=production
-
 # Exposição da porta
 EXPOSE 3000
 
 # Comando para rodar o Nuxt em produção
-CMD ["node", ".output/server/index.mjs"]
+CMD ["sh", "-c", "npm run build && node .output/server/index.mjs"]
 
-# RUN TO PRODUCTION $ NODE_ENV=production docker-compose up --build
+# RUN TO PRODUCTION $ NODE_ENV=production docker-compose up -d --build
