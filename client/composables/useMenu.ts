@@ -15,11 +15,11 @@ export const useMenu = () => {
     };
 
     const getButtonClass = (targetMenu: string) => {
-        return menu.value === targetMenu ? "rounded-full bg-gray-700" : "";
+        return menu.value === targetMenu ? "rounded-full dark:bg-gray-700" : "";
     };
       
       const getIconClass = (targetMenu: string) => {
-        return menu.value === targetMenu ? "text-indigo-400" : "dark:text-gray-400";
+        return menu.value === targetMenu ? "text-indigo-400" : "text-gray-400";
     };
 
     return {

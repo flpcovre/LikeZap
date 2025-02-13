@@ -7,13 +7,13 @@
                     aria-controls="appearance-settings-collapse">
                     <div class="grow text-start">
                         <p
-                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem] mb-4">
+                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold mb-4">
                             Aparência </p>
                         <p
-                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem]">
+                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-normal">
                             Personalize a aparência </p>
                     </div>
-                    <i class="ri-arrow-right-s-line transition-all duration-300"></i>
+                    <Icon ri="arrow-right-s-line" customClass="transition-all duration-300"/>
                 </button>
 
                 <button role="listitem" aria-expanded="false"
@@ -21,13 +21,13 @@
                     aria-controls="notifications-settings-collapse">
                     <div class="grow text-start">
                         <p
-                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem] mb-4">
+                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold mb-4">
                             Notificações </p>
                         <p
-                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem]">
+                            class="outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-normal">
                             Customize as notificações </p>
                     </div>
-                    <i class="ri-arrow-right-s-line transition-all duration-300"></i>
+                    <Icon ri="arrow-right-s-line" customClass="transition-all duration-300"/>
                 </button>
             </div>
         </div>
@@ -37,4 +37,5 @@
 
 <script setup lang="ts">
 import SidebarSection from './SidebarSection.vue';
+import Icon from '~/components/ui/Icon.vue';
 </script>
