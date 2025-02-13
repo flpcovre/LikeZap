@@ -12,10 +12,20 @@ export const useMenu = () => {
         if (menus.includes(newMenu)) {
             menu.value = newMenu;
         }
-    }
+    };
+
+    const getButtonClass = (targetMenu: string) => {
+        return menu.value === targetMenu ? "rounded-full bg-gray-700" : "";
+    };
+      
+      const getIconClass = (targetMenu: string) => {
+        return menu.value === targetMenu ? "text-indigo-400" : "dark:text-gray-400";
+    };
 
     return {
         menu,
-        setMenu
+        setMenu,
+        getButtonClass,
+        getIconClass
     };
 }

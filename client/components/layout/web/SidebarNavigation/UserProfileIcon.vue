@@ -1,13 +1,16 @@
 <template>
-    <div class="border-t dark:border-gray-700 p-4">
-        <button class="flex items-center">
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center" @click="setMenu('UserProfile')">
-                <i class="ri-user-line dark:text-gray-600"></i>
+    <div class="border-t dark:border-gray-700 p-2">
+        <button class="flex items-center p-2" :class="getButtonClass('UserProfile')">
+            <div class="w-8 h-8 rounded-full dark:bg-gray-300 flex items-center justify-center"
+                @click="setMenu('UserProfile')">
+                <Icon ri="user-line" customClass="dark:text-gray-600" />
             </div>
         </button>
     </div>
 </template>
 
 <script setup lang="ts">
-const { setMenu } = useMenu();
+import Icon from "~/components/ui/Icon.vue";
+
+const { setMenu, getButtonClass } = useMenu();
 </script>

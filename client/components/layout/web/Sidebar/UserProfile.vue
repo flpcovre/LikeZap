@@ -91,7 +91,8 @@
                         </p>
                     </div>
                 </label>
-            </div><button tabindex="0"
+            </div>
+            <button tabindex="0"
                 class="group p-3 flex justify-center items-center rounded-sm transition-all duration-200 ease-out outline-none bg-indigo-300 dark:bg-indigo-400 active:ring active:ring-indigo-200', focus:outline-none focus:ring focus:ring-indigo-100 w-full py-4">
                 <p class="text-sm font-semibold text-white leading-4 tracking-[.01rem]"> Save Settings </p>
             </button>
@@ -100,5 +101,6 @@
 </template>
 
 <script setup lang="ts">
+import Icon from '~/components/ui/Icon.vue';
 import SidebarSection from './SidebarSection.vue';
 </script>

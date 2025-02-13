@@ -1,36 +1,49 @@
 <template>
-    <div class="p-4 flex flex-col space-y-4">
-        <button class="p-2 rounded-lg cursor-pointer" title="Chat" @click="setMenu('Conversations')">
-            <i class="ri-chat-3-fill text-xl" 
-               :class="menu == 'Conversations' ? 'text-indigo-400' : 'dark:text-gray-400'">
-            </i>
-        </button>
+  <div class="p-4 flex flex-col space-y-4">
+    <button
+      class="p-2 rounded-lg relative cursor-pointer"
+      :class="getButtonClass('Conversations')"
+      title="Chat"
+      @click="setMenu('Conversations')"
+    >
+        <Icon ri="chat-3-fill" :customClass="['text-xl', getIconClass('Conversations')]"/>
+        <NotificationNotice text="10"/>
+    </button>
 
-        <button class="p-2 rounded-lg relative cursor-pointer" title="Notificações" @click="setMenu('Notifications')">
-            <i class="ri-notification-3-fill text-xl"
-            :class="menu == 'Notifications' ? 'text-indigo-400' : 'dark:text-gray-400'">
-            </i>
-            <span
-                class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold dark:text-white bg-indigo-400 rounded-full">
-                5
-            </span>
-        </button>
+    <button
+      class="p-2 rounded-lg relative cursor-pointer"
+      :class="getButtonClass('Notifications')"
+      title="Notificações"
+      @click="setMenu('Notifications')"
+    >
+      <Icon ri="notification-3-fill" :customClass="['text-xl', getIconClass('Notifications')]"/>
+      <NotificationNotice text="5"/>
+    </button>
 
-        <button class="p-2 rounded-lg cursor-pointer" title="Configurações" @click="setMenu('Settings')">
-            <i class="ri-settings-3-fill text-xl" 
-              :class="menu == 'Settings' ? 'text-indigo-400' : 'dark:text-gray-400'">
-            </i>
-        </button>
+    <button
+      class="p-2 rounded-lg cursor-pointer"
+      :class="getButtonClass('Settings')"
+      title="Configurações"
+      @click="setMenu('Settings')"
+    >
+      <Icon ri="settings-3-fill" :customClass="['text-xl', getIconClass('Settings')]"/>
+    </button>
 
-        <button class="p-2 rounded-lg cursor-pointer" title="Modo Escuro" @click="toggleTheme()">
-            <i class="ri-moon-fill text-xl dark:text-gray-400"></i>
-        </button>
-    </div>
+    <button
+      class="p-2 rounded-lg cursor-pointer"
+      title="Modo Escuro"
+      @click="toggleTheme()"
+    >
+      <Icon ri="moon-fill" customClass="text-xl dark:text-gray-400"/>
+    </button>
+  </div>
 </template>
-
+  
 <script setup lang="ts">
-import { useTheme } from "~/composables/useTheme";
+import NotificationNotice from "./NotificationNotice.vue";
+import Icon from "~/components/ui/Icon.vue";
 
 const { toggleTheme } = useTheme();
-const { menu, setMenu } = useMenu();
+const { setMenu, getButtonClass, getIconClass } = useMenu();
 </script>
+  
