@@ -9,7 +9,7 @@ export default {
     "./node_modules/flowbite/**/*.{js,ts}"
   ],
   components: true,
-  darkMode: "class",
+  darkMode: 'class',
   theme: {
     extend: {},
   },

@@ -25,7 +25,7 @@
             </div>
             <div class="flex flex-col mb-7">
                 <ProfileLabel text="Avatar"/>
-                <DropArea/>
+                <DropZone/>
             </div>
             
             <button tabindex="0" class="flex justify-center items-center rounded-sm transition-all duration-200 ease-out outline-none bg-indigo-300 dark:bg-indigo-400 focus:outline-none focus:ring focus:ring-indigo-100 py-4">
@@ -39,6 +39,6 @@
 import ProfileLabel from '~/components/ui/ProfileLabel.vue';
 import ProfileInput from '~/components/ui/ProfileInput.vue';
 import SidebarSection from './SidebarSection.vue';
-import DropArea from '~/components/ui/DropArea.vue';
+import DropZone from '~/components/ui/DropZone.vue';
 import Icon from '~/components/ui/Icon.vue';
 </script>

@@ -23,6 +23,7 @@ const iconClass = computed(() => {
 });
 
 const iconColor = computed(() => {
+    // Retorna undefined se customColor não estiver definido
     return props.customColor ? { color: props.customColor } : undefined;
 });
 </script>
