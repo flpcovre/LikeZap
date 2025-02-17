@@ -2,9 +2,9 @@
 
 ## About
 
-Aplicação Web sendo Desenvolvida com Nuxt.js e Laravel para trabalho de TCC do autor Filipe Feitosa Covre.
+Web Application Being Developed with Nuxt.js and Laravel for Filipe Feitosa Covre's Graduation Project (TCC).
 
-Consiste em uma interface onde o usuário do sistema tem a capacidade de conversar com os clientes que estão enviando mensagens no WhatsApp, isso por meio da Api do WhatsApp.
+It consists of an interface where the system user can communicate with clients who are sending messages on WhatsApp, using the WhatsApp API.
 
 ## Installation
 
@@ -12,13 +12,13 @@ Consiste em uma interface onde o usuário do sistema tem a capacidade de convers
 cd likezap
 ```
 
-Crie o Arquivo .env na raiz a partir do .env.example
+Create .env file in root from .env.example
 
 ```
 cp .env.example .env
 ```
 
-Crie o Arquivo .env na API
+Create the .env File in the API
 
 ```
 cd api
@@ -27,22 +27,22 @@ cd api
 cp .env.example .env
 ```
 
-Monte o Container
+Assemble the Container
 ```
 docker compose up -d
 ```
 
-Acesse o Terminal do Container da API
+Access the API Container Terminal
 ```
 docker compose exec api bash
 ```
 
-Resolva as Dependências do Laravel
+Resolve Laravel Dependencies
 ```
 composer install
 ```
 
-Gere uma Key e Migre as tabelas do banco de dados mysql.
+Generate a Key and Migrate the mysql database tables.
 ```
 php artisan key:generate
 ```

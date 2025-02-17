@@ -2,7 +2,7 @@
     <SidebarSection title="Mensagens">
         <ul>
             <li>
-                <a href="#" onclick="openChatMobile()">
+                <Go to="/chat/1" onclick="openChatMobile()">
                     <div
                         class="flex items-center dark:hover:bg-gray-700 rounded-lg py-[15px] px-2 transition-all duration-200">
                         <div
@@ -17,7 +17,7 @@
                         <div class="text-gray-500 text-[12px] dark:text-gray-300 flex-shrink-0 self-start">
                             06:20</div>
                     </div>
-                </a>
+                </Go>
             </li>
         </ul>
     </SidebarSection>
@@ -26,4 +26,5 @@
 <script setup lang="ts">
 import SidebarSection from './SidebarSection.vue';
 import Icon from '~/components/ui/Icon.vue';
+import Go from '~/components/ui/Go.vue';
 </script>
