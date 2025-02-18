@@ -1,8 +1,8 @@
 <template>
     <div class="p-5 border-b dark:border-gray-700">
         <div class="flex items-center">
-            <i class="ri-arrow-left-s-line text-[23px] mr-3 cursor-pointer md:hidden" onclick="openChatMobile()"></i>
-            
+            <Icon ri="arrow-left-s-line" customClass="text-[23px] mr-3 cursor-pointer md:hidden" onclick="openChatMobile()"/>
+
             <div class="w-9 h-9 rounded-full bg-gray-600 flex items-center justify-center">
                 <Icon ri="user-line" customClass="text-gray-300" />
             </div>

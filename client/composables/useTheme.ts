@@ -1,7 +1,7 @@
 import { ref, onMounted } from "vue";
 
 export const useTheme = () => {
-  const theme = ref('dark');
+  const theme = useState('theme', () => 'dark');
 
   onMounted(() => {
     const storedTheme = localStorage.getItem("theme") || "dark";
