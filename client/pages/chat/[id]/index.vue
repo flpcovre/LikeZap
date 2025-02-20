@@ -138,13 +138,8 @@
         </div>
     </div>
 
-
     <!-- Input Area -->
     <ChatFooter/>
-
-    <!-- Emoji Dropdown -->
-    <!-- <div id="emojiDropdown" class="z-10 hidden">
-    </div> -->
 </template>
 
 <script setup lang="ts">

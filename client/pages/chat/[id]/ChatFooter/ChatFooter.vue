@@ -10,5 +10,4 @@
 import ContextArea from './ContextArea/ContextArea.vue';
 import InputArea from './InputArea/InputArea.vue';
 import SpeakerArea from './SpeakerArea/SpeakerArea.vue';
-
 </script>
