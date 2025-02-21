@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!speaker" class="flex items-center relative">
+    <div class="flex items-center relative">
         <Attachment/>
         <TextArea/>
         <Emoji/>
@@ -14,9 +14,9 @@ import Emoji from './Emoji/Emoji.vue';
 import Speaker from './Speaker.vue';
 import TextArea from './TextArea.vue';
 
-const { speaker } = useSpeaker();
-
 onMounted(() => {
-    initFlowbite();
+    useFlowbite(() => {
+        initFlowbite();
+    })
 })
 </script>
