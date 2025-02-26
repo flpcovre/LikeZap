@@ -1,13 +1,17 @@
 <template>
-    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-e-xl rounded-es-xl shadow max-w-2xl">
+    <TextWrapper :sender="sender">
         <p class="whitespace-pre-wrap break-words">{{ content }}</p>
-        <span class="text-xs text-gray-400 block mt-1 text-right text-end">{{ date }}</span>
-    </div>
+        <!-- <span class="text-xs text-gray-400 block mt-1 text-right text-end">{{ date }}</span> -->
+    </TextWrapper>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    content: String,
-    date: String
-})
+import type { IContact } from '~/types/types';
+import TextWrapper from '../../Wrappers/TextWrapper.vue';
+
+const props = defineProps<{
+    content?: string,
+    date: string
+    sender: IContact
+}>();
 </script>

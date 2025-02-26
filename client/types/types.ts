@@ -3,9 +3,41 @@ export type EventBusEvents = {
 };
 
 export interface IMessage {
-    type: String
-    user_id?: number | null
-    customer_id?: number | null
-    content: string
-    date: string
+  id: number;
+  type?: string;
+  content?: string;
+  date: string;
+  sender: IContact;
+  replyTo?: number;
+  attachments?: IAttachments;
+  audio?: IAudio;
 }
+
+export interface IAttachments {
+  id: number;
+  type: string;
+  name: string;
+  size: string;
+  url: string;
+  thumbnail?: string;
+  file?: File;
+}
+
+export interface IConversation {}
+
+export interface IAudio {
+  id: number;
+  size: string;
+  src: string;
+  duration: string;
+}
+
+export interface IContact {
+  id: number,
+  type: string,
+  email: string,
+  firstName: string,
+  lastName: string,
+  avatar?: string
+}
+

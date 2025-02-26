@@ -7,26 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import ChatWrapper from './ChatWrapper.vue';
+import ChatWrapper from './Wrappers/ChatWrapper.vue';
 import Message from './Message/Message.vue';
-import type { IMessage } from '~/types/types';
+import { messages as messageStore } from '~/types/defaults';
 
-const messages: Ref = computed<IMessage[]>(() => {
-    return [
-        {
-            type: 'text',
-            user_id: null,
-            customer_id: 1,
-            content: 'Teste Texto',
-            date: '3 hours later'
-        },
-        {
-            type: 'media',
-            user_id: 1,
-            customer_id: null,
-            content: 'Teste Midia',
-            date: '2 hours later'
-        }
-    ]
-})
+const messages = ref(messageStore);
 </script>
