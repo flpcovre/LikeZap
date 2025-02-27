@@ -23,16 +23,17 @@ onMounted(() => {
 }
 
 .scrollbar-custom::-webkit-scrollbar-track {
-    background: #333;
+    @apply bg-gray-200 dark:bg-gray-800;
     border-radius: 6px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-    background: #555;
+    @apply bg-gray-400 dark:bg-gray-600;
     border-radius: 6px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500 dark:bg-gray-700;
     background: #888;
 }
 </style>

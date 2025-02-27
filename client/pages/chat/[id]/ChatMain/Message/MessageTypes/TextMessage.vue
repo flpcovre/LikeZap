@@ -1,7 +1,6 @@
 <template>
-    <TextWrapper :sender="sender">
+    <TextWrapper :sender="sender" :date="date">
         <p class="whitespace-pre-wrap break-words">{{ content }}</p>
-        <!-- <span class="text-xs text-gray-400 block mt-1 text-right text-end">{{ date }}</span> -->
     </TextWrapper>
 </template>
 

@@ -21,6 +21,8 @@ export interface IAttachments {
   url: string;
   thumbnail?: string;
   file?: File;
+  width?: number;
+  height?: number;
 }
 
 export interface IConversation {}
@@ -29,7 +31,6 @@ export interface IAudio {
   id: number;
   size: string;
   src: string;
-  duration: string;
 }
 
 export interface IContact {

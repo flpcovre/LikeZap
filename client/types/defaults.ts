@@ -61,7 +61,7 @@ export const messages = [
             type: 'image',
             name: 'Test',
             size: '64mb',
-            url: '/2.jpg',
+            url: '/3.jpeg',
         }
     },
     {
@@ -78,8 +78,7 @@ export const messages = [
         audio: {
             id: 1,
             size: '64MB',
-            src: '/test.mp3',
-            duration: '1:05'
+            src: '/audio.mp3',
         }
     },
         {
@@ -96,7 +95,7 @@ export const messages = [
         audio: {
             id: 1,
             size: '64MB',
-            src: '/test.mp3',
+            src: '/audio.mp3',
             duration: '1:05'
         }
     }
