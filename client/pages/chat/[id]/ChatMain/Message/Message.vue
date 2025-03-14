@@ -1,36 +1,37 @@
 <template>
-    <div class="flex items-start space-x-3 group" :class="{ 'justify-end': message.sender.type === 'user' }">
-        <MessageActionButton v-if="message.sender.type === 'user'" />
-
+    <MessageWrapper :sender="message.sender">
         <component
             :is="messageComponent"
             v-bind="messageProps"
             v-if="messageComponent"
         />
-
-        <MessageActionButton v-if="message.sender.type === 'customer'" />
-    </div>
+    </MessageWrapper>
 </template>
 
 <script setup lang="ts">
+import MessageWrapper from '../Wrappers/MessageWrapper.vue';
 import MessageActionButton from '../MessageActions/MessageActionButton.vue';
-import TextMessage from './MessageTypes/TextMessage.vue';
-import MediaMessage from './MessageTypes/MediaMessage.vue';
-import AudioMessage from './MessageTypes/AudioMessage.vue';
 
-import type { IMessage } from '~/types/types';
+import TextMessage from './MessageTypes/TextMessage.vue';
+import AudioMessage from './MessageTypes/AudioMessage.vue';
+import ImageMessage from './MessageTypes/ImageMessage.vue';
+
+import type { IMessage, MessageType } from '~/types/types';
 
 const props = defineProps<{ message: IMessage }>();
 
-const messageComponent = computed((): any => {
+const messageComponent = computed<Component | null>(() => {
     if (props.message.type) {
-        const componentMap: Record<string, any> = {
+
+        const components: Record<MessageType, Component> = {
             text: TextMessage,
-            media: MediaMessage,
-            audio: AudioMessage
+            audio: AudioMessage,
+            image: ImageMessage,
         };
-        return componentMap[props.message.type] || null;
+
+        return components[props.message.type] || null;
     }
+    return null;
 });
 
 const messageProps = computed(() => {
@@ -47,7 +48,7 @@ const messageProps = computed(() => {
         date,
         sender,
         ...(type === 'text' ? { content } : {}),
-        ...(type === 'media' ? { content, attachments } : {}),
+        ...(type === 'image' ? { content, attachments } : {}),
         ...(type === 'audio' ? { audio } : {})
     };
 });

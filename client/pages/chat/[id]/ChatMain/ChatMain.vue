@@ -11,5 +11,7 @@ import ChatWrapper from './Wrappers/ChatWrapper.vue';
 import Message from './Message/Message.vue';
 import { messages as messageStore } from '~/types/defaults';
 
-const messages = ref(messageStore);
+import type { IMessage } from '~/types/types';
+
+const messages = ref<IMessage[]>(messageStore as IMessage[]);
 </script>

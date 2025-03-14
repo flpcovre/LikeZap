@@ -27,7 +27,7 @@ export const messages = [
     },
     {
         id: 2,
-        type: 'media',
+        type: 'image',
         content: 'Segue em Anexo',
         date: '1 days ago',
         sender: {
@@ -47,7 +47,7 @@ export const messages = [
     },
     {
         id: 2,
-        type: 'media',
+        type: 'image',
         date: '1 days ago',
         sender: {
             id: 2,

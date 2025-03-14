@@ -2,9 +2,12 @@ export type EventBusEvents = {
     addEmojiToTextArea: { native: any };
 };
 
+export type MessageType = 'text' | 'audio' | 'image';
+export type AttachmentsType = 'image' | 'file';
+
 export interface IMessage {
   id: number;
-  type?: string;
+  type: MessageType;
   content?: string;
   date: string;
   sender: IContact;
@@ -15,12 +18,11 @@ export interface IMessage {
 
 export interface IAttachments {
   id: number;
-  type: string;
+  type: AttachmentsType;
   name: string;
   size: string;
   url: string;
   thumbnail?: string;
-  file?: File;
   width?: number;
   height?: number;
 }

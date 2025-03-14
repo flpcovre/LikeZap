@@ -1,34 +1,34 @@
 <template>
-    <MediaWrapper ref="gallery" :sender="sender" :date="date">
-        <a  :href="attachments?.url" 
+    <ImageWrapper ref="gallery" :sender="sender" :date="date">
+        <a  :href="attachments.url" 
             class="block max-w-[40vh] max-h-[35vh] overflow-hidden"
             ref="imageLink"
-            :data-pswp-width="attachments?.width"
-            :data-pswp-height="attachments?.height"
+            :data-pswp-width="attachments.width"
+            :data-pswp-height="attachments.height"
             target="_blank"
         >
-            <img :src="attachments?.url" alt="Imagem" class="object-cover rounded-lg">
+            <img :src="attachments.url" alt="Imagem" class="object-cover rounded-lg">
             <p v-if="content" class="whitespace-pre-wrap break-words mt-2">{{ content }}</p>
         </a>
-    </MediaWrapper>    
+    </ImageWrapper>    
 </template>
 
 <script setup lang="ts">
 import 'photoswipe/style.css';
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import MediaWrapper from '../../Wrappers/MediaWrapper.vue';
+import ImageWrapper from '../../Wrappers/ImageWrapper.vue';
 
 import type { IAttachments, IContact } from '~/types/types';
 
 const props = defineProps<{
     content?: string,
     date: string,
-    attachments?: IAttachments,
+    attachments: IAttachments,
     sender: IContact
 }>();
 
-const gallery = ref<{ mediaRef: HTMLDivElement | null } | null>(null);
+const gallery = ref<{ imgRef: HTMLDivElement | null } | null>(null);
 const lightbox = ref<PhotoSwipeLightbox | null>(null);
 
 const getImageSize = (url: string) => {
@@ -42,17 +42,18 @@ const getImageSize = (url: string) => {
 onMounted(async  () => {
     await nextTick();
 
-    if (props.attachments?.url && !props.attachments?.width) {
+    if (props.attachments.url && !props.attachments.width) {
         const size = await getImageSize(props.attachments.url);
         props.attachments.width = size.width;
         props.attachments.height = size.height;
     }
 
-    if (!lightbox.value && gallery.value?.mediaRef) {
+    if (!lightbox.value && gallery.value?.imgRef) {
         lightbox.value = new PhotoSwipeLightbox({
-            gallery: gallery.value.mediaRef,
+            gallery: gallery.value.imgRef,
             children: 'a',
             mouseMovePan: true,
+            showHideAnimationType: 'fade',
             initialZoomLevel: 'fit',
             secondaryZoomLevel: 1.5,
             maxZoomLevel: 2,
