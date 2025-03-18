@@ -1,48 +1,43 @@
 <template>
-    <AudioWrapper :sender="sender" :date="date">
-        <div class="flex items-center space-x-4">
-            <button 
-                class="w-9 h-9 bg-violet-500 rounded-[.75rem] flex items-center justify-center hover:bg-violet-400"
-                @click="toggleAudioState"
-            >
-                <Icon 
-                    v-if="isReady && !audioPlaying"
-                    ri="play-line" 
-                    customClass="text-xl"
-                />
-                <Icon 
-                    v-if="audioPlaying"
-                    ri="pause-mini-line" 
-                    customClass="text-xl"
-                />
+    <div class="flex items-center space-x-4">
+        <button 
+            class="w-9 h-9 bg-violet-500 rounded-[.75rem] flex items-center justify-center hover:bg-violet-400"
+            @click="toggleAudioState"
+        >
+            <Icon 
+                v-if="isReady && !audioPlaying"
+                ri="play-line" 
+                customClass="text-xl text-white"
+            />
+            <Icon 
+                v-if="audioPlaying"
+                ri="pause-mini-line" 
+                customClass="text-xl text-white"
+            />
 
-                <Spinner
-                    v-if="!isReady"
-                    borderColor="border-violet-500"
-                    borderTColor="border-t-violet-600"
-                    borderSize="border-4"
-                    width="w-6"
-                    height="h-6"
-                />
-            </button>
-            <div ref="wavesurferDiv" class="flex-1"></div>
-            <span id="timeAudio" class="text-xs block mt-1 text-right">{{ durationRemaining }}</span>
-        </div>
-    </AudioWrapper>
+            <Spinner
+                v-if="!isReady"
+                borderColor="border-violet-500"
+                borderTColor="border-t-violet-600"
+                borderSize="border-4"
+                width="w-6"
+                height="h-6"
+            />
+        </button>
+        <div ref="wavesurferDiv" class="flex-1"></div>
+        <span class="text-xs block mt-1 text-right">{{ durationRemaining }}</span>
+    </div>
 </template>
 
 <script setup lang="ts">
 import Icon from '~/components/ui/Icon.vue';
 import Spinner from '~/components/ui/Spinner.vue';
-import AudioWrapper from '../../Wrappers/AudioWrapper.vue';
 
 import WaveSurfer from 'wavesurfer.js';
-import type { IAudio, IContact } from '~/types/types';
+import type { IAudio } from '~/types/types';
 
 const props = defineProps<{
-    date: string,
     audio: IAudio,
-    sender: IContact
 }>()
 
 const wavesurfer = ref<WaveSurfer | null>(null);

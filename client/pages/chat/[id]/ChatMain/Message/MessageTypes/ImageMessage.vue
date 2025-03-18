@@ -1,34 +1,29 @@
 <template>
-    <ImageWrapper ref="gallery" :sender="sender" :date="date">
-        <a  :href="attachments.url" 
-            class="block max-w-[40vh] max-h-[35vh] overflow-hidden"
-            ref="imageLink"
-            :data-pswp-width="attachments.width"
-            :data-pswp-height="attachments.height"
-            target="_blank"
-        >
-            <img :src="attachments.url" alt="Imagem" class="object-cover rounded-lg">
-            <p v-if="content" class="whitespace-pre-wrap break-words mt-2">{{ content }}</p>
-        </a>
-    </ImageWrapper>    
+    <a  :href="attachments.url" 
+        class="block max-w-[40vh] max-h-[35vh] overflow-hidden"
+        ref="imageLink"
+        :data-pswp-width="attachments.width"
+        :data-pswp-height="attachments.height"
+        target="_blank"
+    >
+        <img :src="attachments.url" alt="Imagem" class="object-cover rounded-lg">
+        <p v-if="content" class="whitespace-pre-wrap break-words mt-2">{{ content }}</p>
+    </a>
 </template>
 
 <script setup lang="ts">
 import 'photoswipe/style.css';
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import ImageWrapper from '../../Wrappers/ImageWrapper.vue';
 
-import type { IAttachments, IContact } from '~/types/types';
+import type { IAttachments } from '~/types/types';
 
 const props = defineProps<{
     content?: string,
-    date: string,
     attachments: IAttachments,
-    sender: IContact
 }>();
 
-const gallery = ref<{ imgRef: HTMLDivElement | null } | null>(null);
+const gallery = inject<Ref<HTMLDivElement | null>>('imgRef');
 const lightbox = ref<PhotoSwipeLightbox | null>(null);
 
 const getImageSize = (url: string) => {
@@ -48,9 +43,9 @@ onMounted(async  () => {
         props.attachments.height = size.height;
     }
 
-    if (!lightbox.value && gallery.value?.imgRef) {
+    if (!lightbox.value && gallery?.value) {
         lightbox.value = new PhotoSwipeLightbox({
-            gallery: gallery.value.imgRef,
+            gallery: gallery.value,
             children: 'a',
             mouseMovePan: true,
             showHideAnimationType: 'fade',

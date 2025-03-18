@@ -1,55 +1,91 @@
 <template>
-    <MessageWrapper :sender="message.sender">
-        <component
-            :is="messageComponent"
-            v-bind="messageProps"
-            v-if="messageComponent"
-        />
+    <MessageWrapper v-if="component" :sender="message.sender">
+        <MessageActionButton v-if="message.sender.type === 'user'" />
+
+        <component 
+            :is="component.wrapper.component"
+            v-bind="component.wrapper.props"
+        >
+            <component
+                :is="component.message.component"
+                v-bind="component.message.props"
+            />
+
+            <MessageDate :date="message.date"/>
+        </component>
+
+        <MessageActionButton v-if="message.sender.type === 'customer'" />
     </MessageWrapper>
 </template>
 
 <script setup lang="ts">
-import MessageWrapper from '../Wrappers/MessageWrapper.vue';
-import MessageActionButton from '../MessageActions/MessageActionButton.vue';
+import MessageWrapper from '../Message/Wrappers/MessageWrapper.vue';
+
+import TextWrapper from './Wrappers/TextWrapper.vue';
+import AudioWrapper from './Wrappers/AudioWrapper.vue';
+import ImageWrapper from './Wrappers/ImageWrapper.vue';
 
 import TextMessage from './MessageTypes/TextMessage.vue';
 import AudioMessage from './MessageTypes/AudioMessage.vue';
 import ImageMessage from './MessageTypes/ImageMessage.vue';
 
-import type { IMessage, MessageType } from '~/types/types';
+import MessageDate from './MessageDate.vue';
+import MessageActionButton from '../MessageActions/MessageActionButton.vue';
+
+import type { IMessage, MessageType, MessageComponent } from '~/types/types';
 
 const props = defineProps<{ message: IMessage }>();
 
-const messageComponent = computed<Component | null>(() => {
+const component = computed<MessageComponent | null>(() => {
     if (props.message.type) {
 
-        const components: Record<MessageType, Component> = {
-            text: TextMessage,
-            audio: AudioMessage,
-            image: ImageMessage,
-        };
+        const defaultWrapperProps = {
+            date: props.message.date,
+            sender: props.message.sender
+        }
+
+        const components: Record<MessageType, MessageComponent> = {
+            text: {
+                message: {
+                    component: TextMessage,
+                    props: {
+                        content: props.message.content
+                    }
+                },
+                wrapper: {
+                    component: TextWrapper,
+                    props: defaultWrapperProps
+                },
+            },
+            audio: {
+                message: {
+                    component: AudioMessage,
+                    props: {
+                        audio: props.message.audio
+                    }
+                },
+                wrapper: {
+                    component: AudioWrapper,
+                    props: defaultWrapperProps
+                },
+            },
+            image: {
+                message: {
+                    component: ImageMessage,
+                    props: {
+                        content: props.message.content,
+                        attachments: props.message.attachments
+                    }
+                },
+                wrapper: {
+                    component: ImageWrapper,
+                    props: defaultWrapperProps
+                },
+            }
+        }
 
         return components[props.message.type] || null;
     }
     return null;
-});
-
-const messageProps = computed(() => {
-    const { 
-        type, 
-        content, 
-        date, 
-        sender, 
-        attachments, 
-        audio 
-    } = props.message;
-
-    return {
-        date,
-        sender,
-        ...(type === 'text' ? { content } : {}),
-        ...(type === 'image' ? { content, attachments } : {}),
-        ...(type === 'audio' ? { audio } : {})
-    };
-});
+})
 </script>
