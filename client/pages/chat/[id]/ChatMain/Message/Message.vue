@@ -1,6 +1,6 @@
 <template>
     <MessageWrapper v-if="component" :sender="message.sender">
-        <MessageActionButton v-if="message.sender.type === 'user'" />
+        <MessageActions v-if="message.sender.type === 'user'" :target="message.id"/> 
 
         <component 
             :is="component.wrapper.component"
@@ -14,7 +14,7 @@
             <MessageDate :date="message.date"/>
         </component>
 
-        <MessageActionButton v-if="message.sender.type === 'customer'" />
+         <MessageActions v-if="message.sender.type === 'customer'" :target="message.id"/>
     </MessageWrapper>
 </template>
 
@@ -30,7 +30,7 @@ import AudioMessage from './MessageTypes/AudioMessage.vue';
 import ImageMessage from './MessageTypes/ImageMessage.vue';
 
 import MessageDate from './MessageDate.vue';
-import MessageActionButton from '../MessageActions/MessageActionButton.vue';
+import MessageActions from '../MessageActions/MessageActions.vue';
 
 import type { IMessage, MessageType, MessageComponent } from '~/types/types';
 

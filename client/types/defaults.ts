@@ -13,7 +13,7 @@ export const messages = [
         }
     },
     {
-        id: 1,
+        id: 2,
         type: 'text',
         content: 'Ooi',
         date: '2 days ago',
@@ -26,7 +26,7 @@ export const messages = [
         }
     },
     {
-        id: 2,
+        id: 3,
         type: 'image',
         content: 'Segue em Anexo',
         date: '1 days ago',
@@ -46,7 +46,7 @@ export const messages = [
         }
     },
     {
-        id: 2,
+        id: 4,
         type: 'image',
         date: '1 days ago',
         sender: {
@@ -65,7 +65,7 @@ export const messages = [
         }
     },
     {
-        id: 3,
+        id: 5,
         type: 'audio',
         date: '3 hours ago',
         sender: {
@@ -82,7 +82,7 @@ export const messages = [
         }
     },
         {
-        id: 3,
+        id: 6,
         type: 'audio',
         date: '3 hours ago',
         sender: {
