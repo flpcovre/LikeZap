@@ -1,6 +1,6 @@
 <template>
-    <MessageActionButton ref="actionButtonRef" :target="target"/>
-    <MessageActionDropdown ref="actionDropdownRef" :target="target" />
+    <MessageActionButton :target="target"/>
+    <MessageActionDropdown :target="target"/>
 </template>
 
 <script setup lang="ts">
