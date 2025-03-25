@@ -1,6 +1,9 @@
 <template>
     <li>
-        <button class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white">
+        <button 
+            class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            @click="handleClick"
+        >
             {{ text }}
         </button>
     </li>
@@ -11,6 +14,11 @@ const props = defineProps({
     text: {
         type: String,
         required: true
-    }
+    },
+    dropdown: Object as () => HTMLElement | null,
 });
+
+const handleClick = () => {
+    props.dropdown?.classList.add('hidden');
+};
 </script>

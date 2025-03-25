@@ -1,5 +1,5 @@
 <template>
-    <a 
+    <a
         :data-dropdown-toggle="`actions-${target}`" 
         @click="toggleIconState"
         :class="['cursor-pointer', (isIconVisible ? 'flex' : 'hidden'), 'group-hover:flex']"
@@ -35,6 +35,7 @@ onMounted(() => {
                     isIconVisible.value = false;
                     eventBus.emit('toggleBlockInChatWrapper', false);
                 }
+                console.log(isIconVisible.value);
             }
         });
 

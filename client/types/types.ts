@@ -4,6 +4,7 @@ export type AttachmentsType = 'image' | 'file';
 export type EventBusEvents = {
     addEmojiToTextArea: { native: any };
     toggleBlockInChatWrapper: boolean;
+    changeDropdownTriggerValue: void
 };
 
 export type MessageComponent = {
