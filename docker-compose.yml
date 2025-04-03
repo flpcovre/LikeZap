@@ -75,7 +75,8 @@ services:
       - "8888:80"
     environment:
       PMA_HOST: likezap-db
-      PMA_ABSOLUTE_URI: "https://example.com/phpmyadmin/"
+      PMA_ABSOLUTE_URI: "http://example.com/phpmyadmin/"
+      PMA_FORCE_SSL: false
     depends_on:
       - mysql
     networks:

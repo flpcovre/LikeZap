@@ -2,11 +2,14 @@
 FROM node:18-alpine AS base
 WORKDIR /app
 
+# Instala pnpm globalmente
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # 2️⃣ Copia apenas arquivos essenciais para instalar dependências
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # 3️⃣ Instala dependências sem cache para otimizar camadas
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # 4️⃣ Copia todo o projeto
 COPY . .
@@ -19,19 +22,17 @@ ENV NODE_ENV=development
 EXPOSE 3000
 
 # Comando padrão para rodar em modo dev
-CMD ["npm", "run", "dev"]
+CMD ["pnpm", "run", "dev"]
 
 # 6️⃣ Ambiente de Produção
 FROM base AS production
 ENV NODE_ENV=production
 
 # Compila o projeto para produção
-RUN npm run build
+RUN pnpm run build
 
 # Exposição da porta
 EXPOSE 3000
 
 # Comando para rodar o Nuxt em produção
-CMD ["sh", "-c", "npm run build && node .output/server/index.mjs"]
-
-# RUN TO PRODUCTION $ NODE_ENV=production docker-compose up -d --build
+CMD ["sh", "-c", "pnpm run build && node .output/server/index.mjs"]
