@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   client:
     container_name: client
@@ -49,36 +47,34 @@ services:
       - ./api:/var/www/
     networks:
       - setup-network
-  
-  mysql:
-    image: mysql:8
+
+  postgres:
+    image: postgres:15
     container_name: likezap-db
     restart: always
     tty: true
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}	
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - dbdata:/var/lib/mysql
+      - pgdata:/var/lib/postgresql/data
     networks:
       - setup-network
 
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin:5.2
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
     restart: always
     ports:
-      - "8888:80"
+      - "5050:80"
     environment:
-      PMA_HOST: likezap-db
-      PMA_ABSOLUTE_URI: "http://example.com/phpmyadmin/"
-      PMA_FORCE_SSL: false
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
-      - mysql
+      - postgres
     networks:
       - setup-network
 
@@ -97,6 +93,5 @@ networks:
     driver: bridge
   
 volumes:
-  dbdata:
+  pgdata:
   redisdata:
-      
