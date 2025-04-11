@@ -1,6 +1,5 @@
 <template>
     <div
-        :id="target"
         ref="dropdownRef"
         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-600"
         :class="customClass"
@@ -16,8 +15,7 @@ import type { InstanceOptions } from 'flowbite';
 
 const props = defineProps({
     target: {
-        type: String,
-        required: true
+        type: String
     },
     triggerElement: {
         type: Object as PropType<HTMLElement | null>,
@@ -55,7 +53,6 @@ onMounted(() => {
                 };
 
                 const instanceOptions: InstanceOptions = {
-                    id: props.target,
                     override: true
                 };
 
@@ -72,9 +69,5 @@ onMounted(() => {
             }
         },
         { immediate: true });
-});
-
-defineExpose({
-  dropdownInstance
 });
 </script>

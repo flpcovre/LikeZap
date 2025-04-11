@@ -7,7 +7,6 @@
     </button>
 
     <Dropdown 
-        :target="`actions-${target}`" 
         :triggerElement="button"
         @hide="toggleIconState"
         @show="toggleIconState"

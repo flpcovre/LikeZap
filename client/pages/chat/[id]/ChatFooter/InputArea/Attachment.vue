@@ -6,7 +6,7 @@
         <Icon ri="attachment-2" customClass="text-[25px] opacity-75"/>
     </button>
 
-    <Dropdown target="attachment-dropdown" :triggerElement="button">
+    <Dropdown :triggerElement="button">
         <DropdownList>
             <DropdownItem icon="file-text-fill" text="Documentos"/>
             <DropdownItem icon="image-fill" text="Fotos"/>

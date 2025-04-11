@@ -32,7 +32,10 @@ const props = defineProps({
 
 const dropdown = inject<Ref<DropdownInterface | null>>('dropdown');
 
-const handleClick = () => {
+const handleClick = (event: Event) => {
+    const target: HTMLElement = event.target as HTMLElement;
+    target.blur();
+
     if (dropdown?.value) {
         dropdown.value.hide();
     }
