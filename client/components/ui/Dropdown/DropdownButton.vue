@@ -1,6 +1,6 @@
 <template>
     <button
-        :data-dropdown-toggle="target"
+        ref="buttonRef"
         :class="customClass"
     >
          <slot/>
@@ -9,13 +9,15 @@
 
 <script setup lang="ts">
 const props = defineProps({
-    target: {
-        type: String,
-        required: true
-    },
     customClass: {
         type: [String, Array],
         default: ''
     }   
+});
+
+const buttonRef = ref<HTMLElement | null>(null);
+
+defineExpose({
+    buttonRef
 });
 </script>
