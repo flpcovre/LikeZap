@@ -1,0 +1,43 @@
+<template>
+    <button
+        :class="['cursor-pointer', (isIconVisible ? 'flex' : 'hidden'), 'group-hover:flex']"
+        ref="button"
+    >
+        <Icon ri="arrow-down-s-line" customClass="text-lg text-gray-400"/>
+    </button>
+
+    <Dropdown 
+        :target="`actions-${target}`" 
+        :triggerElement="button"
+        @hide="toggleIconState"
+        @show="toggleIconState"
+        customClass="pointer-events-auto"
+    >   
+        <DropdownList>
+            <DropdownItem text="Responder"/>
+            <DropdownItem text="Copiar"/>
+        </DropdownList>
+    </Dropdown>
+</template>
+
+<script setup lang="ts">
+import Dropdown from '~/components/ui/Dropdown/Dropdown.vue';
+import DropdownList from '~/components/ui/Dropdown/DropdownList.vue';
+import DropdownItem from '~/components/ui/Dropdown/DropdownItem.vue';
+import Icon from '~/components/ui/Icon.vue';
+
+const props = defineProps({
+    target: {
+        type: Number,
+        required: true
+    }
+})
+
+const button = ref<HTMLElement | null>(null);
+const isIconVisible = ref<boolean>(false);
+
+const toggleIconState = (): void => {
+    isIconVisible.value = !isIconVisible.value;
+    eventBus.emit('toggleBlockInChatWrapper', isIconVisible.value);
+}
+</script>

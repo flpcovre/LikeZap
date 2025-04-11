@@ -30,7 +30,7 @@ import AudioMessage from './MessageTypes/AudioMessage.vue';
 import ImageMessage from './MessageTypes/ImageMessage.vue';
 
 import MessageDate from './MessageDate.vue';
-import MessageActions from './MessageActions/MessageActions.vue';
+import MessageActions from './MessageActions.vue';
 
 import type { IMessage, MessageType, MessageComponent } from '~/types/types';
 

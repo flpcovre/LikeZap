@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 import { initFlowbite } from 'flowbite';
-import Attachment from './Attachment/Attachment.vue';
 import Emoji from './Emoji/Emoji.vue';
+import Attachment from './Attachment.vue';
 import Speaker from './Speaker.vue';
 import TextArea from './TextArea.vue';
 

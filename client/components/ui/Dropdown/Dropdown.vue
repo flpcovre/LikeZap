@@ -20,8 +20,8 @@ const props = defineProps({
         required: true
     },
     triggerElement: {
-        type: Object as () => HTMLElement | null,
-        required: true
+        type: Object as PropType<HTMLElement | null>,
+        default: null
     },
     customClass: {
         type: [String, Array],
@@ -30,40 +30,51 @@ const props = defineProps({
 })
 
 const dropdownRef = ref<HTMLElement | null>(null);
+const dropdownInstance = ref<DropdownInterface | null>(null);
+const emit = defineEmits(['show', 'hide']);
+
+provide('dropdown', dropdownInstance);
 
 onMounted(() => {
-    const $targetEl: HTMLElement | null = dropdownRef.value;
-    const $triggerEl: HTMLElement | null = props.triggerElement;
+    const stop = watch(
+        () => props.triggerElement,
+        (trigger) => {
+            if (trigger && dropdownRef.value) {
+                const options: DropdownOptions = {
+                    placement: 'bottom',
+                    triggerType: 'click',
+                    offsetSkidding: 0,
+                    offsetDistance: 10,
+                    delay: 300,
+                    onHide: () => {
+                        emit('hide');
+                    },
+                    onShow: () => {
+                        emit('show');
+                    },
+                };
 
-    const options: DropdownOptions = {
-        placement: 'bottom',
-        triggerType: 'click',
-        offsetSkidding: 0,
-        offsetDistance: 10,
-        delay: 300,
-        onHide: () => {
-            console.log('dropdown has been hidden');
+                const instanceOptions: InstanceOptions = {
+                    id: props.target,
+                    override: true
+                };
+
+                const dropdown: DropdownInterface = new Dropdown(
+                    dropdownRef.value,
+                    trigger,
+                    options,
+                    instanceOptions
+                );
+
+                dropdownInstance.value = dropdown;
+
+                stop();
+            }
         },
-        onShow: () => {
-            console.log('dropdown has been shown');
-        },
-        onToggle: () => {
-            console.log('dropdown has been toggled');
-        },
-    };
+        { immediate: true });
+});
 
-    const instanceOptions: InstanceOptions = {
-        id: props.target,
-        override: true
-    };
-
-    const dropdown: DropdownInterface = new Dropdown(
-        $targetEl,
-        $triggerEl,
-        options,
-        instanceOptions
-    );
-
-    dropdown.show();
-})
+defineExpose({
+  dropdownInstance
+});
 </script>
