@@ -40,7 +40,6 @@ const props = defineProps<{ message: IMessage }>();
 
 const component = computed<MessageComponent>(() => {
     const defaultWrapperProps = {
-        date: props.message.date,
         sender: props.message.sender
     }
 

@@ -13,7 +13,7 @@
         customClass="pointer-events-auto"
     >   
         <DropdownList>
-            <DropdownItem text="Responder" @click="toggleContextArea(message)"/>
+            <DropdownItem text="Responder" @click="openContextArea(message)"/>
             <DropdownItem text="Copiar"/>
         </DropdownList>
     </Dropdown>
@@ -31,7 +31,7 @@ const props = defineProps<{message: IMessage}>()
 
 const button = ref<HTMLElement | null>(null);
 const isIconVisible = ref<boolean>(false);
-const { toggleContextArea } = useContextArea();
+const { openContextArea } = useContextArea();
 
 const toggleIconState = (): void => {
     isIconVisible.value = !isIconVisible.value;

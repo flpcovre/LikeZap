@@ -4,19 +4,20 @@ export const useContextArea = () => {
     const contextArea = useState<boolean>('contextArea', () => false);
     const contextMessage = useState<IMessage | null>('contextMessage', () => null);
 
-    const toggleContextArea = (message?: IMessage) => {
-        contextArea.value = !contextArea.value;
+    const openContextArea = (message: IMessage) => {
+        contextArea.value = true;
+        contextMessage.value = message;
+    }
 
-        if (contextArea.value && message) {
-            contextMessage.value = message;
-        } else {
-            contextMessage.value = null;
-        }
+    const closeContextArea = () => {
+        contextArea.value = false;
+        contextMessage.value = null;
     }
 
     return {
         contextArea,
         contextMessage,
-        toggleContextArea
+        openContextArea,
+        closeContextArea,
     }
 }

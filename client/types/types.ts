@@ -29,7 +29,6 @@ export type MessageProps = {
 }
 
 export type MessageWrapperProps = {
-  date: string;
   sender: IContact
 }
 

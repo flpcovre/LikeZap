@@ -23,7 +23,7 @@ const props = defineProps<{
     attachments: IAttachments,
 }>();
 
-const gallery = inject<Ref<HTMLDivElement | null>>('imgRef');
+const gallery = inject<Ref<HTMLDivElement | null>>('rootDiv');
 const lightbox = ref<PhotoSwipeLightbox | null>(null);
 
 const getImageSize = (url: string) => {

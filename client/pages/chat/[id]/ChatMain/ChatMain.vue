@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import ChatWrapper from './Message/Wrappers/ChatWrapper.vue';
+import ChatWrapper from './ChatWrapper.vue';
 import Message from './Message/Message.vue';
 
 import { messages as messageStore } from '~/types/defaults';

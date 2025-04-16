@@ -16,9 +16,5 @@
 import Icon from '~/components/ui/Icon.vue';
 import ContextMessage from './ContextMessage/ContextMessage.vue';
 
-const { contextArea, contextMessage, toggleContextArea } = useContextArea();
-
-const closeContextArea = () => {
-    toggleContextArea();
-}
+const { contextArea, contextMessage, closeContextArea } = useContextArea();
 </script>
