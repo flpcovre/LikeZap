@@ -81,7 +81,7 @@ export const messages = [
             src: '/audio.mp3',
         }
     },
-        {
+    {
         id: 6,
         type: 'audio',
         date: '3 hours ago',
@@ -97,6 +97,45 @@ export const messages = [
             size: '64MB',
             src: '/audio.mp3',
             duration: '1:05'
+        }
+    },
+    {
+        id: 7,
+        type: 'file',
+        date: '1 days ago',
+        content: 'Segue em Anexo',
+        sender: {
+            id: 2,
+            type: 'user',
+            email: 'ffcovre@unesc.com',
+            firstName: 'Filipe',
+            lastName: 'Covre',
+        },
+        attachments: {
+            id: 1,
+            type: 'file',
+            name: 'documento.pdf',
+            size: '64mb',
+            url: '/documento.pdf',
+        }
+    },
+    {
+        id: 8,
+        type: 'file',
+        date: '1 days ago',
+        sender: {
+            id: 2,
+            type: 'customer',
+            email: 'ffcovre@unesc.com',
+            firstName: 'Filipe',
+            lastName: 'Covre',
+        },
+        attachments: {
+            id: 1,
+            type: 'file',
+            name: 'documento.pdf',
+            size: '64mb',
+            url: '/documento.pdf',
         }
     }
 ]

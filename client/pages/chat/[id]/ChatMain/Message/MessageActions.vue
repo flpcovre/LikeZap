@@ -13,7 +13,7 @@
         customClass="pointer-events-auto"
     >   
         <DropdownList>
-            <DropdownItem text="Responder"/>
+            <DropdownItem text="Responder" @click="toggleContextArea(message)"/>
             <DropdownItem text="Copiar"/>
         </DropdownList>
     </Dropdown>
@@ -25,15 +25,13 @@ import DropdownList from '~/components/ui/Dropdown/DropdownList.vue';
 import DropdownItem from '~/components/ui/Dropdown/DropdownItem.vue';
 import Icon from '~/components/ui/Icon.vue';
 
-const props = defineProps({
-    target: {
-        type: Number,
-        required: true
-    }
-})
+import type { IMessage } from '~/types/types';
+
+const props = defineProps<{message: IMessage}>()
 
 const button = ref<HTMLElement | null>(null);
 const isIconVisible = ref<boolean>(false);
+const { toggleContextArea } = useContextArea();
 
 const toggleIconState = (): void => {
     isIconVisible.value = !isIconVisible.value;

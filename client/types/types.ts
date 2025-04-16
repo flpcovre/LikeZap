@@ -1,4 +1,4 @@
-export type MessageType = 'text' | 'audio' | 'image';
+export type MessageType = 'text' | 'audio' | 'image' | 'file';
 export type AttachmentsType = 'image' | 'file';
 
 export type EventBusEvents = {
@@ -14,7 +14,7 @@ export type MessageComponent = {
 
 export type MessageConstructor = {
   component: Component;
-  props: MessageProps; 
+  props: MessageProps;
 }
 
 export type MessageWrapperConstructor = {
@@ -71,4 +71,3 @@ export interface IContact {
   lastName: string,
   avatar?: string
 }
-
