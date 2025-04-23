@@ -13,12 +13,12 @@ export type MessageComponent = {
 }
 
 export type MessageConstructor = {
-  component: Component;
+  template: Component;
   props: MessageProps;
 }
 
 export type MessageWrapperConstructor = {
-  component: Component;
+  template: Component;
   props: MessageWrapperProps;
 }
 
@@ -33,12 +33,12 @@ export type MessageWrapperProps = {
 }
 
 export interface IMessage {
-  id: number;
+  id: string;
   type: MessageType;
   content?: string;
   date: string;
   sender: IContact;
-  replyTo?: number;
+  replyTo?: string;
   attachments?: IAttachments;
   audio?: IAudio;
 }
@@ -69,4 +69,9 @@ export interface IContact {
   firstName: string,
   lastName: string,
   avatar?: string
+}
+
+export interface ContextMessage {
+  template: Component,
+  props?: Record<string, any>
 }

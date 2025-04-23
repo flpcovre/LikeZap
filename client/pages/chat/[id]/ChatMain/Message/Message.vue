@@ -1,13 +1,16 @@
 <template>
-    <MessageWrapper v-if="component" :sender="message.sender">
+    <MessageWrapper v-if="component" :id="message.id" :sender="message.sender">
         <MessageActions v-if="message.sender.type === 'user'" :message="message"/> 
 
         <component 
-            :is="component.wrapper.component"
+            :is="component.wrapper.template"
             v-bind="component.wrapper.props"
         >
+
+            <ContextMessage v-if="replyMessage" :message="replyMessage"/>
+
             <component
-                :is="component.message.component"
+                :is="component.message.template"
                 v-bind="component.message.props"
             />
 
@@ -31,12 +34,28 @@ import AudioMessage from './MessageTypes/AudioMessage.vue';
 import ImageMessage from './MessageTypes/ImageMessage.vue';
 import FileMessage from './MessageTypes/FileMessage.vue';
 
+import ContextMessage from './ContextMessage/ContextMessage.vue';
+
 import MessageDate from './MessageDate.vue';
 import MessageActions from './MessageActions.vue';
 
 import type { IMessage, MessageType, MessageComponent } from '~/types/types';
 
+import { messages as messageStore } from '~/types/defaults';
+
 const props = defineProps<{ message: IMessage }>();
+
+const allChatMessages = ref<IMessage[]>(messageStore as IMessage[]);
+
+const replyMessage = computed<IMessage | null>(() => {
+    if (props.message.replyTo) {
+        const message = allChatMessages.value.find((message) => message.id === props.message.replyTo) as IMessage;
+
+        return message;
+    }
+
+    return null;
+});
 
 const component = computed<MessageComponent>(() => {
     const defaultWrapperProps = {
@@ -46,56 +65,56 @@ const component = computed<MessageComponent>(() => {
     const components: Record<MessageType, MessageComponent> = {
         text: {
             message: {
-                component: TextMessage,
+                template: TextMessage,
                 props: {
                     content: props.message.content
                 }
             },
             wrapper: {
-                component: TextWrapper,
+                template: TextWrapper,
                 props: defaultWrapperProps
             },
         },
         audio: {
             message: {
-                component: AudioMessage,
+                template: AudioMessage,
                 props: {
                     audio: props.message.audio
                 }
             },
             wrapper: {
-                component: AudioWrapper,
+                template: AudioWrapper,
                 props: defaultWrapperProps
             },
         },
         image: {
             message: {
-                component: ImageMessage,
+                template: ImageMessage,
                 props: {
                     content: props.message.content,
                     attachments: props.message.attachments
                 }
             },
             wrapper: {
-                component: ImageWrapper,
+                template: ImageWrapper,
                 props: defaultWrapperProps
             },
         },
         file: {
             message: {
-                component: FileMessage,
+                template: FileMessage,
                 props: {
                     content: props.message.content,
                     attachments: props.message.attachments
                 }
             },
             wrapper: {
-                component: FileWrapper,
+                template: FileWrapper,
                 props: defaultWrapperProps
             }
         }
     }
 
     return components[props.message.type];
-})
+});
 </script>

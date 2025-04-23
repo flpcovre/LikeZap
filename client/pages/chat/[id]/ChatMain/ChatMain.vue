@@ -1,6 +1,9 @@
 <template>
     <ChatWrapper>
-        <div v-for="(message, index) in messages">
+        <div 
+            v-for="(message, index) in messages"
+            :key="message.id"
+        >
             <Message :message="message"/>
         </div>
     </ChatWrapper>

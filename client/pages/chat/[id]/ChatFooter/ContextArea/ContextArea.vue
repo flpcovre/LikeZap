@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import Icon from '~/components/ui/Icon.vue';
-import ContextMessage from './ContextMessage/ContextMessage.vue';
+import ContextMessage from '../../ChatMain/Message/ContextMessage/ContextMessage.vue';
 
 const { contextArea, contextMessage, closeContextArea } = useContextArea();
 </script>

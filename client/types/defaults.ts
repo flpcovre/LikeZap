@@ -1,6 +1,6 @@
 export const messages = [
     {
-        id: 1,
+        id: '1',
         type: 'text',
         content: 'Olá amigo',
         date: '2 days ago',
@@ -13,7 +13,7 @@ export const messages = [
         }
     },
     {
-        id: 2,
+        id: '2',
         type: 'text',
         content: 'Ooi',
         date: '2 days ago',
@@ -26,7 +26,7 @@ export const messages = [
         }
     },
     {
-        id: 3,
+        id: '3',
         type: 'image',
         content: 'Segue em Anexo',
         date: '1 days ago',
@@ -46,7 +46,7 @@ export const messages = [
         }
     },
     {
-        id: 4,
+        id: '4',
         type: 'image',
         date: '1 days ago',
         sender: {
@@ -65,7 +65,7 @@ export const messages = [
         }
     },
     {
-        id: 5,
+        id: '5',
         type: 'audio',
         date: '3 hours ago',
         sender: {
@@ -82,7 +82,7 @@ export const messages = [
         }
     },
     {
-        id: 6,
+        id: '6',
         type: 'audio',
         date: '3 hours ago',
         sender: {
@@ -100,7 +100,7 @@ export const messages = [
         }
     },
     {
-        id: 7,
+        id: '7',
         type: 'file',
         date: '1 days ago',
         content: 'Segue em Anexo',
@@ -117,10 +117,10 @@ export const messages = [
             name: 'documento.pdf',
             size: '64mb',
             url: '/documento.pdf',
-        }
+        },
     },
     {
-        id: 8,
+        id: '8',
         type: 'file',
         date: '1 days ago',
         sender: {
@@ -136,6 +136,6 @@ export const messages = [
             name: 'documento.pdf',
             size: '64mb',
             url: '/documento.pdf',
-        }
+        },
     }
 ]
