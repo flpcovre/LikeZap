@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
-import { Picker } from 'emoji-mart'
 import eventBus from '~/utils/eventBus';
 
 const props = defineProps({
@@ -16,9 +15,11 @@ const props = defineProps({
 
 const { theme } = useTheme();
 
+const EmojiMart = await import('emoji-mart');
+
 const emojiDropdown = ref<HTMLDivElement | null>(null);
 
-let PickerInstance: Picker | null = null;
+let PickerInstance: any = null;
 
 const createPicker = () => {
     if (PickerInstance) {
@@ -29,7 +30,7 @@ const createPicker = () => {
         }
     }
 
-    PickerInstance = new Picker({
+    PickerInstance = new EmojiMart.Picker({
       onEmojiSelect: (emoji: { native: any; }) => {
         addEmojiToTextArea(emoji.native)
       },

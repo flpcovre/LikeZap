@@ -8,8 +8,8 @@
 <script setup lang="ts">
 import Icon from '~/components/ui/Icon.vue';
 
-const props = defineProps({
-    content: String,
+const props = defineProps<{
+    content?: String,
     fileName: String,
-})
+}>()
 </script>

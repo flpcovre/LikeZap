@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row items-center gap-2">
         <Icon ri="camera-line" customClass="text-indigo-300"/>
-        <p class="whitespace-pre-wrap break-words">{{ content ? content : 'Imagem' }}</p>
+        <p class="whitespace-pre-wrap break-words">{{ content ?? 'Imagem' }}</p>
     </div>
 </template>
 
@@ -9,6 +9,6 @@
 import Icon from '~/components/ui/Icon.vue';
 
 const props = defineProps<{
-    content: string;
+    content?: string;
 }>()
 </script>
