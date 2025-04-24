@@ -4,7 +4,7 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-      target: ${NODE_ENV:-development}
+      target: ${APP_ENV:-local}
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -14,7 +14,7 @@ services:
       - /app/node_modules
     stdin_open: true
     environment:
-      - NODE_ENV=${NODE_ENV:-development}
+      - NODE_ENV=${APP_ENV:-local}
     depends_on:
       - api
     networks:
@@ -31,6 +31,17 @@ services:
       - ./api:/var/www/
     depends_on:
       - redis
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_URL: ${APP_DOMAIN}
+      DB_HOST: ${POSTGRES_HOST}
+      DB_PORT: ${POSTGRES_PORT}
+      DB_DATABASE: ${POSTGRES_DB}
+      DB_USERNAME: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     networks:
       - setup-network
   
@@ -50,7 +61,7 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: likezap-db
+    container_name: ${POSTGRES_HOST}
     restart: always
     tty: true
     ports:
@@ -80,7 +91,7 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: redis
+    container_name: ${REDIS_HOST}
     ports:
       - "6379:6379"
     volumes:

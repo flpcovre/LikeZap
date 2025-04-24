@@ -15,8 +15,8 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # 5️⃣ Ambiente de Desenvolvimento
-FROM base AS development
-ENV NODE_ENV=development
+FROM base AS local
+ENV NODE_ENV=local
 
 # Exposição da porta
 EXPOSE 3000
