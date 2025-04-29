@@ -7,9 +7,9 @@ const app = express();
 app.use(express.json());
 dotenv.config();
 
-const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, WEBHOOK_PORT } = process.env;
+const { WEBHOOK_VERIFY_TOKEN, WEBHOOK_PORT } = process.env;
 
-app.post("/webhook", async (req, res) => {
+app.post("/whatsapp", async (req, res) => {
   // log incoming messages
   console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
 
@@ -29,7 +29,7 @@ app.post("/webhook", async (req, res) => {
 
 // accepts GET requests at the /webhook endpoint. You need this URL to setup webhook initially.
 // info on verification request payload: https://developers.facebook.com/docs/graph-api/webhooks/getting-started#verification-requests
-app.get("/webhook", (req, res) => {
+app.get("/whatsapp", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
   const challenge = req.query["hub.challenge"];
