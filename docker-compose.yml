@@ -19,6 +19,26 @@ services:
       - api
     networks:
       - setup-network
+    
+  webhook:
+    container_name: webhook
+    build: 
+      context: ./webhook
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    environment:
+      WEBHOOK_VERIFY_TOKEN: ${WEBHOOK_VERIFY_TOKEN}
+      GRAPH_API_TOKEN: ${GRAPH_API_TOKEN}
+      WEBHOOK_PORT: ${WEBHOOK_PORT}
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./webhook:/app
+      - /app/node_modules
+    stdin_open: true
+    networks:
+      - setup-network
 
   api:
     container_name: api
@@ -61,7 +81,7 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: ${POSTGRES_HOST}
+    container_name: postgres
     restart: always
     tty: true
     ports:
