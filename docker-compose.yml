@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: "traefik:v2.0"
+    image: "traefik:v3.0"
     ports:
       - "80:80"
       - "443:443"
@@ -34,6 +34,13 @@ services:
       - ./client:/app
       - /app/node_modules
     stdin_open: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.client.entrypoints=web"
+      - "traefik.http.services.client.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.client-strip.stripprefix.prefixes=/"
+      - "traefik.http.routers.client.middlewares=client-strip"
     environment:
       - NODE_ENV=${APP_ENV:-local}
     depends_on:
@@ -57,6 +64,13 @@ services:
       - ./webhook:/app
       - /app/node_modules
     stdin_open: true
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.webhook.rule=PathPrefix(`/webhook`)"
+    - "traefik.http.routers.webhook.entrypoints=web"
+    - "traefik.http.services.webhook.loadbalancer.server.port=3333"
+    - "traefik.http.middlewares.webhook-strip.stripprefix.prefixes=/webhook"
+    - "traefik.http.routers.webhook.middlewares=webhook-strip"
     networks:
       - web
 
@@ -99,7 +113,7 @@ services:
       - api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`localhost`) && PathPrefix(`/`)"
+      - "traefik.http.routers.nginx.rule=Host(`localhost`) && PathPrefix(`/api`)"
       - "traefik.http.routers.nginx.middlewares=portainer-prefix"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.prefixes=/"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.forceslash=false"
@@ -119,20 +133,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
-    networks:
-      - web
-
-  pgadmin4:
-    image: dpage/pgadmin4
-    container_name: pgadmin4
-    restart: always
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    depends_on:
-      - postgres
     networks:
       - web
 

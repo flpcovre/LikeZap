@@ -1,3 +1,4 @@
 .env
-./letsecrypt
+letsecrypt
+
 acme.json

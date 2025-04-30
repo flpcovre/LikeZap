@@ -31,10 +31,12 @@ const props = defineProps<{message: IMessage}>()
 
 const button = ref<HTMLElement | null>(null);
 const isIconVisible = ref<boolean>(false);
+
+const toggleDropdownState = inject('toggleDropdownState') as () => void;
 const { openContextArea } = useContextArea();
 
 const toggleIconState = (): void => {
     isIconVisible.value = !isIconVisible.value;
-    eventBus.emit('toggleBlockInChatWrapper', isIconVisible.value);
+    toggleDropdownState();
 }
 </script>

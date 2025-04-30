@@ -12,12 +12,9 @@
 
 const isDropdownVisible = ref<boolean>(false);
 
-onMounted(() => {
-    eventBus.on('toggleBlockInChatWrapper', (dropdownState: boolean) => {
-        isDropdownVisible.value = dropdownState;
-    });
-})
-onUnmounted(() => {
-    eventBus.off('toggleBlockInChatWrapper');
-})
+const toggleDropdownState = (): void => {
+    isDropdownVisible.value = !isDropdownVisible.value;
+}
+
+provide('toggleDropdownState', toggleDropdownState);
 </script>
