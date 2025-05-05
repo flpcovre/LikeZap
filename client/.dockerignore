@@ -2,3 +2,6 @@ node_modules
 dist
 Dockerfile
 .dockerignore
+.output
+.cache
+.nuxt

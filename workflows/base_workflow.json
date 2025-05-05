@@ -1,0 +1,86 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        60,
+        0
+      ],
+      "id": "ae2b7514-a0f9-4850-af54-668fd7ea1f1d",
+      "name": "WhatsApp Trigger",
+      "webhookId": "55f7448c-892e-4f64-a2da-b0113c1ced1f",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "dwROhMOztjlfyT8o",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://nginx/api/messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=contacts",
+              "value": "={{ $json.contacts }}"
+            },
+            {
+              "name": "messages",
+              "value": "={{ $json.messages }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        0
+      ],
+      "id": "9a25ba30-6be4-4d09-85af-6c61a28d2406",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2c8873fd-0185-48d4-8a41-99196cf3f969",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0360997007d4610f919587fe1ab69ac7b8f5fc5724cadddb42fb00c1323ce270"
+  },
+  "id": "jBNEzyxnXPSZYWPn",
+  "tags": []
+}
