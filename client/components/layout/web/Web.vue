@@ -1,17 +1,17 @@
 <template>
-    <WebWrapper>
-      <SidebarWrapper v-if="showSidebar">
-        <SidebarNavigation />
-        <Sidebar />
-      </SidebarWrapper>
+  <WebWrapper>
+    <SidebarWrapper v-if="showSidebar">
+      <SidebarNavigation />
+      <Sidebar />
+    </SidebarWrapper>
 
-      <ClientOnly>
-          <MainWrapper v-if="showMainContent">
-            <slot />
-          </MainWrapper>
-      </ClientOnly>
-    </WebWrapper>
-  </template>
+    <ClientOnly>
+      <MainWrapper v-show="showMainContent">
+        <slot />
+      </MainWrapper>
+    </ClientOnly>
+  </WebWrapper>
+</template>
 
 <script setup lang="ts">
 import WebWrapper from './Wrappers/WebWrapper.vue';
