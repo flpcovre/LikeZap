@@ -2,7 +2,7 @@
     <SidebarSection title="Mensagens">
         <ul>
             <li>
-                <Go to="/chat/1" onclick="openChatMobile()">
+                <Go to="/chat/1" @click="openChatMobile">
                     <div
                         class="flex items-center dark:hover:bg-gray-700 rounded-lg py-[15px] px-2 transition-all duration-200">
                         <div
@@ -27,4 +27,8 @@
 import SidebarSection from './SidebarSection.vue';
 import Icon from '~/components/ui/Icon.vue';
 import Go from '~/components/ui/Go.vue';
+
+const openChatMobile = () => {
+    
+}
 </script>
