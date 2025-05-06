@@ -1,6 +1,6 @@
 <template>
     <SidebarSection title="Notificações">
-        <div class="w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:text-gray-400"
+        <div class="w-full p-4 text-gray-500 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:text-gray-400"
             role="alert">
             <div class="flex">
                 <div
