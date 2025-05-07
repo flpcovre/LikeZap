@@ -1,12 +1,16 @@
 <template>
     <ChatWrapper>
-        <div 
+        <!-- <div 
             v-for="(message, index) in messages"
             :key="message.id"
             :ref="(el) => setMessageRef(message.id)(el as Element | null)"
         >
             <Message :message="message"/>
-        </div>
+        </div> -->
+
+         <div class="flex items-start space-x-3 animate-pulse dark:divide-gray-700 group">
+            <div class="w-70 bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
+         </div>
     </ChatWrapper>
 </template>
 
@@ -19,7 +23,7 @@ import { useContextArea } from '~/composables/useContextArea';
 import { messages as messageStore } from '~/types/defaults';
 import type { IMessage } from '~/types/types';
 
-const messages = ref<IMessage[]>(messageStore as IMessage[]);
+const messages = ref<IMessage[] | null>(null);
 const messageRefs = ref<Record<string, Element>>({});
 const contextArea = useContextArea();
 
@@ -41,7 +45,16 @@ const handleScrollToMessage = (messageId: string) => {
     }
 };
 
-onMounted(() => {
+const getMessages = async (): Promise<Ref<IMessage[] | null>> => {
+    await throwDelay(2000);
+
+    messages.value = messageStore as IMessage[];
+    
+    return messages;
+}
+
+onMounted(async () => {
+    await getMessages();
     contextArea.scrollToMessage.value = handleScrollToMessage; 
 });
 </script>
