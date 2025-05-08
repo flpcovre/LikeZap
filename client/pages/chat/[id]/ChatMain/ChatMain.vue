@@ -4,17 +4,18 @@
             v-for="(message, index) in messages"
             :key="message.id"
             :ref="(el) => setMessageRef(message.id)(el as Element | null)"
+            v-if="messages"
         >
             <Message :message="message"/>
         </div> -->
 
-         <div class="flex items-start space-x-3 animate-pulse dark:divide-gray-700 group">
-            <div class="w-70 bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-         </div>
+        <MessagesSkeleton/>
+         
     </ChatWrapper>
 </template>
 
 <script setup lang="ts">
+import MessagesSkeleton from '~/components/ui/Skelenton/MessagesSkeleton.vue';
 import ChatWrapper from './ChatWrapper.vue';
 import Message from './Message/Message.vue';
 
