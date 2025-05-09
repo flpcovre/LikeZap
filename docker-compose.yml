@@ -87,7 +87,7 @@ services:
       - api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`localhost`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.nginx.rule=Host(`${APP_HOST}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.nginx.middlewares=portainer-prefix"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.prefixes=/"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.forceslash=false"
