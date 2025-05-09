@@ -36,7 +36,7 @@ services:
     stdin_open: true
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.client.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.client.rule=PathPrefix(`/`) && !PathPrefix(`/api`)"
       - "traefik.http.routers.client.entrypoints=web"
       - "traefik.http.services.client.loadbalancer.server.port=3000"
       - "traefik.http.middlewares.client-strip.stripprefix.prefixes=/"
@@ -87,7 +87,7 @@ services:
       - api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`${APP_HOST}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.nginx.rule=PathPrefix(`/api`)"
       - "traefik.http.routers.nginx.middlewares=portainer-prefix"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.prefixes=/"
       - "traefik.http.middlewares.portainer-prefix.stripprefix.forceslash=false"
