@@ -1,66 +1,18 @@
 <template>
     <div class="grid gap-2 animate-pulse shadow-sm gap-4">
 
-        <div v-for="(bubble, index) in bubbles">
+        <div v-if="bubbles" v-for="(bubble, index) in bubbles">
 
             <div v-if="bubble.bubble.type == 'user'" class="flex items-start dark:divide-gray-700 space-x-3 group">
-                <div :class="`w-[${bubble.bubble.percent}%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full`"></div>
+                <div :style="{ width: bubble.bubble.percent + '%' }" class="bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
             </div>
     
     
              <div v-if="bubble.bubble.type == 'customer'" class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-                <div :class="`w-[${bubble.bubble.percent}%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full`"></div>
+                <div :style="{ width: bubble.bubble.percent + '%' }" class="bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
             </div>
 
         </div>
-
-        <!-- <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[40%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[50%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[55%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[30%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[20%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[50%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[30%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[40%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[35%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[30%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group">
-            <div class="w-[55%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div>
-
-        <div class="flex items-start space-x-3 dark:divide-gray-700 group justify-end">
-            <div class="w-[30%] bg-gray-100 dark:bg-gray-700 p-3 shadow text-sm rounded-full"></div>
-        </div> -->
     </div>
 </template>
 

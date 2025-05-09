@@ -1,15 +1,15 @@
 <template>
     <ChatWrapper>
-        <!-- <div 
+        <div 
             v-for="(message, index) in messages"
             :key="message.id"
             :ref="(el) => setMessageRef(message.id)(el as Element | null)"
             v-if="messages"
         >
             <Message :message="message"/>
-        </div> -->
+        </div>
 
-        <MessagesSkeleton/>
+        <MessagesSkeleton v-else/>
          
     </ChatWrapper>
 </template>
