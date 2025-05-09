@@ -22,30 +22,34 @@ jobs:
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
           echo ">>> Testing SSH connection..."
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo 'SSH OK'"
-      
 
-      - name: Copy project to EC2
+      - name: Fix permissions on EC2 before sync
         run: |
-          rsync -az --delete \
-            --exclude 'client/.output' \
-            --exclude 'client/node_modules' \
-            --exclude 'api/vendor' \
-            --exclude 'api/storage' \
+          ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          sudo chown -R $USER:$USER /home/${USER}/app || true
+          EOF
+
+      - name: Copy project to EC2 with exclusions
+        run: |
+          echo "client/.nuxt/" > .rsync-exclude
+          echo "client/node_modules/" >> .rsync-exclude
+          echo "letsencrypt/" >> .rsync-exclude
+          echo ".env" >> .rsync-exclude
+          
+          rsync -az --delete --exclude-from=.rsync-exclude \
             -e "ssh -i ~/.ssh/id_rsa" \
             ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/app
-        
 
       - name: Create .env file on EC2
         run: |
-            ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            echo "${{ secrets.ENV }}" > /home/${{ secrets.EC2_USER }}/app/.env
-            EOF
-
+          ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          echo "${{ secrets.ENV }}" > /home/${USER}/app/.env
+          EOF
 
       - name: Start Docker Compose on EC2
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/${{ secrets.EC2_USER }}/app
+          cd /home/${USER}/app
           docker compose down
           docker compose up -d --build
           EOF
