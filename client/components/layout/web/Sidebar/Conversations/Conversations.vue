@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import SidebarSection from './SidebarSection.vue';
+import SidebarSection from '../SidebarSection.vue';
 import Icon from '~/components/ui/Icon.vue';
 import Go from '~/components/ui/Go.vue';
 

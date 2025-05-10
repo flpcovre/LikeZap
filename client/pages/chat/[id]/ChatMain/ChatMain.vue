@@ -1,23 +1,31 @@
 <template>
-    <ChatWrapper>
+    <ChatWrapper v-if="messages">
         <div 
             v-for="(message, index) in messages"
             :key="message.id"
             :ref="(el) => setMessageRef(message.id)(el as Element | null)"
-            v-if="messages"
         >
             <Message :message="message"/>
         </div>
-
-        <MessagesSkeleton v-else/>
-         
+        
+        
     </ChatWrapper>
+    
+    <Spinner
+        borderColor="dark:border-gray-700"
+        borderTColor="border-t-indigo-600 dark:border-t-indigo-600"
+        borderSize="border-4"
+        width="w-10"
+        height="h-10"
+        customClass="h-screen"
+        v-else
+    />
 </template>
 
 <script setup lang="ts">
-import MessagesSkeleton from '~/components/ui/Skelenton/MessagesSkeleton.vue';
 import ChatWrapper from './ChatWrapper.vue';
 import Message from './Message/Message.vue';
+import Spinner from '~/components/ui/Spinner.vue';
 
 import { useContextArea } from '~/composables/useContextArea';
 

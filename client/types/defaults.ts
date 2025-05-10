@@ -165,7 +165,8 @@ export const conversations = [
         ],
         messages: [
             ...messages
-        ]
+        ],
+        subject: 'teste'
     },
     {
         id: '2',
@@ -188,6 +189,39 @@ export const conversations = [
         ],
         messages: [
             ...messages
-        ]
+        ],
+        subject: 'teste'
+    }
+] as IConversation[];
+
+
+export const newServices = [
+        {
+        id: '1',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'johndoe@doe.com',
+                firstName: 'John',
+                lastName: 'Doe',
+            }
+        ],
+        subject: 'Não consegue imprimir boletos.'
+    },
+    {
+        id: '2',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'janedoe@doe.com',
+                firstName: 'Jane',
+                lastName: 'Doe',
+            }
+        ],
+        subject: 'Procurando ajuda com o sistema.'
     }
 ] as IConversation[];

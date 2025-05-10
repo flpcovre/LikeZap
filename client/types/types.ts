@@ -61,6 +61,7 @@ export interface IConversation {
   contacts: IContact[];
   messages?: IMessage[];
   unread?: number;
+  subject: string;
 }
 
 export interface IAudio {
