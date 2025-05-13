@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import Conversations from './Conversations.vue';
-import Notifications from './Notifications.vue';
+import Conversations from './Conversations/Conversations.vue';
+import NewServices from './NewServices/NewServices.vue';
 import UserProfile from './UserProfile.vue';
 import Settings from './Settings.vue';
 import TransitionWrapper from '../Wrappers/TransitionWrapper.vue';
@@ -18,7 +18,7 @@ const { menu } = useMenu();
 
 const menuComponents: Record<string, any> = {
   Conversations,
-  Notifications,
+  NewServices,
   UserProfile,
   Settings,
 };

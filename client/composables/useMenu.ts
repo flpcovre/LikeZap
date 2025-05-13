@@ -4,7 +4,7 @@ export const useMenu = () => {
     const setMenu = (newMenu: string) => {
         const menus = [
             'Conversations',
-            'Notifications',
+            'NewServices',
             'UserProfile',
             'Settings'
         ];

@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IMessage, MessageType, ContextMessage } from '~/types/types';
+import type { IMessage, MessageType, IContextMessage } from '~/types/types';
 
 import ContextTextMessage from './ContextTextMessage.vue';
 import ContextImageMessage from './ContextImageMessage.vue';
@@ -31,9 +31,9 @@ const goToMessage = () => {
     }
 };
 
-const contextMessage = computed<ContextMessage>(() => {
+const contextMessage = computed<IContextMessage>(() => {
 
-    const components: Record<MessageType, ContextMessage> = {
+    const components: Record<MessageType, IContextMessage> = {
         text: {
             template: ContextTextMessage,
             props: {

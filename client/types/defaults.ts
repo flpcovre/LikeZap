@@ -1,3 +1,5 @@
+import type { IConversation } from "./types"
+
 export const messages = [
     {
         id: '1',
@@ -140,3 +142,86 @@ export const messages = [
         replyTo: '2'
     },
 ]
+
+export const conversations = [
+    {
+        id: '1',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'johndoe@doe.com',
+                firstName: 'John',
+                lastName: 'Doe',
+            },
+            {   
+                id: 2,
+                type: 'user',
+                email: 'filipecovre224@gmail.com',
+                firstName: 'Filipe',
+                lastName: 'Covre',
+            },
+        ],
+        messages: [
+            ...messages
+        ],
+        subject: 'teste'
+    },
+    {
+        id: '2',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'janedoe@doe.com',
+                firstName: 'Jane',
+                lastName: 'Doe',
+            },
+            {   
+                id: 2,
+                type: 'user',
+                email: 'filipecovre224@gmail.com',
+                firstName: 'Filipe',
+                lastName: 'Covre',
+            },
+        ],
+        messages: [
+            ...messages
+        ],
+        subject: 'teste'
+    }
+] as IConversation[];
+
+
+export const newServices = [
+        {
+        id: '1',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'johndoe@doe.com',
+                firstName: 'John',
+                lastName: 'Doe',
+            }
+        ],
+        subject: 'Não consegue imprimir boletos.'
+    },
+    {
+        id: '2',
+        type: 'couple',
+        contacts: [
+            {   
+                id: 1,
+                type: 'customer',
+                email: 'janedoe@doe.com',
+                firstName: 'Jane',
+                lastName: 'Doe',
+            }
+        ],
+        subject: 'Procurando ajuda com o sistema.'
+    }
+] as IConversation[];

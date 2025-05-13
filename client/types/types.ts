@@ -55,7 +55,14 @@ export interface IAttachments {
   height?: number;
 }
 
-export interface IConversation {}
+export interface IConversation {
+  id: string;
+  type: string;
+  contacts: IContact[];
+  messages?: IMessage[];
+  unread?: number;
+  subject: string;
+}
 
 export interface IAudio {
   id: number;
@@ -72,7 +79,17 @@ export interface IContact {
   avatar?: string
 }
 
-export interface ContextMessage {
+export interface IContextMessage {
   template: Component,
   props?: Record<string, any>
+}
+
+export interface IUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar: string;
+  token: string;
+  contacts: IContact[];
 }

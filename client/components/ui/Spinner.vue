@@ -1,5 +1,7 @@
 <template>
-    <div class="flex items-center justify-center">
+    <div 
+      :class="customClass"
+      class="flex items-center justify-center">
       <div 
         class="animate-spin rounded-full"
         :class="[borderColor, borderTColor, borderSize, width, height]"
@@ -14,5 +16,6 @@ const props = defineProps({
     borderSize: String,
     width: String,
     height: String,
+    customClass: String
 })
 </script>
