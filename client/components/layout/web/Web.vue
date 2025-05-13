@@ -1,6 +1,6 @@
 <template>
   <WebWrapper>
-    <SidebarWrapper v-if="showSidebar">
+    <SidebarWrapper v-show="showSidebar">
       <SidebarNavigation />
       <Sidebar />
     </SidebarWrapper>
