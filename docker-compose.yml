@@ -20,10 +20,10 @@ services:
     networks:
       - web
 
-  client:
-    container_name: client
+  frontend:
+    container_name: frontend
     build:
-      context: ./client
+      context: ./frontend
       dockerfile: Dockerfile
       target: ${APP_ENV:-local}
     ports:
@@ -31,34 +31,34 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./client:/app
+      - ./frontend:/app
       - /app/node_modules
     stdin_open: true
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.client.rule=PathPrefix(`/`) && !PathPrefix(`/api`)"
-      - "traefik.http.routers.client.entrypoints=web"
-      - "traefik.http.services.client.loadbalancer.server.port=3000"
-      - "traefik.http.middlewares.client-strip.stripprefix.prefixes=/"
-      - "traefik.http.routers.client.middlewares=client-strip"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`) && !PathPrefix(`/api`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.frontend-strip.stripprefix.prefixes=/"
+      - "traefik.http.routers.frontend.middlewares=frontend-strip"
     environment:
       - NODE_ENV=${APP_ENV:-local}
     depends_on:
-      - api
+      - backend
     networks:
       - web
 
-  api:
-    container_name: api
+  backend:
+    container_name: backend
     build:
-      context: ./api
+      context: ./backend
       dockerfile: Dockerfile
     restart: unless-stopped
     tty: true
     ports:
       - "9000:9000"
     volumes:
-      - ./api:/var/www/html
+      - ./backend:/var/www/html
     depends_on:
       - redis
       - postgres
@@ -82,10 +82,10 @@ services:
     ports:
      - "8080:80"
     volumes:
-      - ./api:/var/www/html
+      - ./backend:/var/www/html
       - ./nginx/api.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - api
+      - backend
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=PathPrefix(`/api`)"
