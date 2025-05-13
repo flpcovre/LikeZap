@@ -16,43 +16,17 @@ Follow these steps to set up the project:
     git clone https://github.com/flpcovre/LikeZap.git
     cd likezap
     ```
-
+    
 2. **Set Up Environment Variables**  
     Create a `.env` file in the root directory by copying the example file:
     ```bash
     cp .env.example .env
     ```
 
-3. **Set Up API Environment Variables**  
-    Navigate to the `api` directory and create a `.env` file for the API:
-    ```bash
-    cd api
-    cp .env.example .env
-    ```
-
-4. **Build and Start the Containers**  
+3. **Build and Start the Containers**  
     Use Docker Compose to assemble and start the containers:
     ```bash
-    docker compose up -d
-    ```
-
-5. **Access the API Container**  
-    Open a terminal inside the API container:
-    ```bash
-    docker compose exec api bash
-    ```
-
-6. **Install Laravel Dependencies**  
-    Inside the API container, install the required dependencies:
-    ```bash
-    composer install
-    ```
-
-7. **Set Up the Application**  
-    Inside the API container, generate the application key and migrate the database tables:
-    ```bash
-    php artisan key:generate
-    php artisan migrate
+    docker compose up -d --build
     ```
 
 Your application should now be ready to use.
