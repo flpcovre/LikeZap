@@ -93,3 +93,10 @@ export interface IUser {
   token: string;
   contacts: IContact[];
 }
+
+export interface IMessageGroup {
+  id: string;
+  dateLabel: string;
+  date: string;
+  messages: IMessage[];
+}

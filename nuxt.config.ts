@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss'
   ],
   css: [
-    'remixicon/fonts/remixicon.css'
+    'remixicon/fonts/remixicon.css',
+    '~/assets/css/global.css'
   ],
   app: {
     head: {

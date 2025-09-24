@@ -1,0 +1,74 @@
+.date-separator-wrapper {
+    @apply flex items-center justify-center my-6 relative;
+}
+
+.date-separator {
+    @apply flex items-center justify-center;
+}
+
+.date-label {
+    @apply px-4 py-2 text-xs font-medium text-gray-500 bg-gray-100 dark:bg-gray-800 dark:text-gray-400 rounded-full;
+    @apply shadow-sm border border-gray-200 dark:border-gray-700;
+    @apply backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80;
+    @apply transition-all duration-200 hover:shadow-md;
+}
+
+.date-separator::before,
+.date-separator::after {
+    content: '';
+    @apply flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent;
+    @apply transition-all duration-300;
+}
+
+.date-separator::before {
+    @apply mr-4;
+}
+
+.date-separator::after {
+    @apply ml-4;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .date-label {
+        @apply px-3 py-1.5 text-xs;
+    }
+    
+    .date-separator::before,
+    .date-separator::after {
+        @apply mx-2;
+    }
+}
+
+.message-group {
+    @apply mb-4;
+}
+
+.message-item {
+    @apply mb-1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-time {
+    @apply text-[10px] text-gray-400 block text-right;
+}

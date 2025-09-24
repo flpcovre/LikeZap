@@ -1,14 +1,21 @@
 <template>
-    <ChatWrapper v-if="messages">
+    <ChatWrapper v-if="groupedMessages">
         <div 
-            v-for="(message, index) in messages"
-            :key="message.id"
-            :ref="(el) => setMessageRef(message.id)(el as Element | null)"
+            v-for="group in groupedMessages"
+            :key="group.id"
+            class="message-group"
         >
-            <Message :message="message"/>
+            <DateSeparator :dateLabel="group.dateLabel" />
+            
+            <div 
+                v-for="message in group.messages"
+                :key="message.id"
+                :ref="(el) => setMessageRef(message.id)(el as Element | null)"
+                class="message-item"
+            >
+                <Message :message="message"/>
+            </div>
         </div>
-        
-        
     </ChatWrapper>
     
     <Spinner
@@ -26,13 +33,16 @@
 import ChatWrapper from './ChatWrapper.vue';
 import Message from './Message/Message.vue';
 import Spinner from '~/components/ui/Spinner.vue';
+import DateSeparator from '~/components/ui/DateSeparator.vue';
 
 import { useContextArea } from '~/composables/useContextArea';
 
 import { messages as messageStore } from '~/types/defaults';
-import type { IMessage } from '~/types/types';
+import { groupMessagesByDay } from '~/utils/utils';
+import type { IMessage, IMessageGroup } from '~/types/types';
 
 const messages = ref<IMessage[] | null>(null);
+const groupedMessages = ref<IMessageGroup[] | null>(null);
 const messageRefs = ref<Record<string, Element>>({});
 const contextArea = useContextArea();
 
@@ -54,12 +64,14 @@ const handleScrollToMessage = (messageId: string) => {
     }
 };
 
-const getMessages = async (): Promise<Ref<IMessage[] | null>> => {
+const getMessages = async (): Promise<Ref<IMessageGroup[] | null>> => {
     await throwDelay(2000);
 
     messages.value = messageStore as IMessage[];
     
-    return messages;
+    groupedMessages.value = groupMessagesByDay(messages.value);
+    
+    return groupedMessages;
 }
 
 onMounted(async () => {

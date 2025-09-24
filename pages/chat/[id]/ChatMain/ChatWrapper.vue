@@ -1,8 +1,8 @@
 <template>
-    <div class="flex-1 overflow-y-auto scrollbar-custom p-6 space-y-6 overflow-x-hidden"
+    <div class="flex-1 overflow-y-auto scrollbar-custom p-6 overflow-x-hidden"
         :class="{'pointer-events-none': isDropdownVisible}"
     >
-        <div class="space-y-4">
+        <div class="space-y-2">
             <slot/>
         </div>
     </div>

@@ -1,11 +1,15 @@
-import type { IConversation } from "./types"
+import type { IConversation, IMessageGroup } from "./types"
+import { format, subDays } from "date-fns";
+import { groupMessagesByDay } from "../utils/utils";
+
+const now = new Date();
 
 export const messages = [
     {
         id: '1',
-        type: 'text',
+        type: 'text' as const,
         content: 'Olá amigo',
-        date: '2 days ago',
+        date: format(subDays(now, 3), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 1,
             type: 'customer',
@@ -16,9 +20,9 @@ export const messages = [
     },
     {
         id: '2',
-        type: 'text',
+        type: 'text' as const,
         content: 'Ooi',
-        date: '2 days ago',
+        date: format(subDays(now, 3), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 1,
             type: 'user',
@@ -29,9 +33,9 @@ export const messages = [
     },
     {
         id: '3',
-        type: 'image',
+        type: 'image' as const,
         content: 'Segue em Anexo',
-        date: '1 days ago',
+        date: format(subDays(now, 2), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 2,
             type: 'user',
@@ -41,7 +45,7 @@ export const messages = [
         },
         attachments: {
             id: 1,
-            type: 'image',
+            type: 'image' as const,
             name: 'Test',
             size: '64mb',
             url: '/2.jpg',
@@ -49,8 +53,8 @@ export const messages = [
     },
     {
         id: '4',
-        type: 'image',
-        date: '1 days ago',
+        type: 'image' as const,
+        date: format(subDays(now, 2), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 2,
             type: 'customer',
@@ -60,7 +64,7 @@ export const messages = [
         },
         attachments: {
             id: 1,
-            type: 'image',
+            type: 'image' as const,
             name: 'Test',
             size: '64mb',
             url: '/3.jpeg',
@@ -68,8 +72,8 @@ export const messages = [
     },
     {
         id: '5',
-        type: 'audio',
-        date: '3 hours ago',
+        type: 'audio' as const,
+        date: format(subDays(now, 1), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 2,
             type: 'user',
@@ -85,8 +89,8 @@ export const messages = [
     },
     {
         id: '6',
-        type: 'audio',
-        date: '3 hours ago',
+        type: 'audio' as const,
+        date: format(subDays(now, 1), "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 2,
             type: 'customer',
@@ -103,8 +107,8 @@ export const messages = [
     },
     {
         id: '7',
-        type: 'file',
-        date: '1 days ago',
+        type: 'file' as const,
+        date: format(now, "dd/MM/yyyy HH:mm:ss"),
         content: 'Segue em Anexo',
         sender: {
             id: 2,
@@ -115,7 +119,7 @@ export const messages = [
         },
         attachments: {
             id: 1,
-            type: 'file',
+            type: 'file' as const,
             name: 'documento.pdf',
             size: '64mb',
             url: '/documento.pdf',
@@ -123,8 +127,8 @@ export const messages = [
     },
     {
         id: '8',
-        type: 'file',
-        date: '1 days ago',
+        type: 'file' as const,
+        date: format(now, "dd/MM/yyyy HH:mm:ss"),
         sender: {
             id: 2,
             type: 'customer',
@@ -134,7 +138,7 @@ export const messages = [
         },
         attachments: {
             id: 1,
-            type: 'file',
+            type: 'file' as const,
             name: 'documento.pdf',
             size: '64mb',
             url: '/documento.pdf',
@@ -194,6 +198,8 @@ export const conversations = [
     }
 ] as IConversation[];
 
+// Agrupa as mensagens por dia para demonstração
+export const groupedMessages: IMessageGroup[] = groupMessagesByDay(messages);
 
 export const newServices = [
         {
