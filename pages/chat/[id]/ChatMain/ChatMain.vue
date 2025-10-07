@@ -1,7 +1,7 @@
 <template>
-    <ChatWrapper v-if="groupedMessages">
+    <ChatWrapper v-if="groupedChatMessage">
         <div 
-            v-for="group in groupedMessages"
+            v-for="group in groupedChatMessage"
             :key="group.id"
             class="message-group"
         >
@@ -38,13 +38,11 @@ import DateSeparator from '~/components/ui/DateSeparator.vue';
 import { useContextArea } from '~/composables/useContextArea';
 
 import { messages as messageStore } from '~/types/defaults';
-import { groupMessagesByDay } from '~/utils/utils';
 import type { IMessage, IMessageGroup } from '~/types/types';
 
-const messages = ref<IMessage[] | null>(null);
-const groupedMessages = ref<IMessageGroup[] | null>(null);
 const messageRefs = ref<Record<string, Element>>({});
 const contextArea = useContextArea();
+const { setChatMessage, getGroupedChatMessage, groupedChatMessage, clearChatMessage } = useChatMessage();
 
 function setMessageRef(id: string) {
     return (el: Element | null) => {
@@ -65,17 +63,17 @@ const handleScrollToMessage = (messageId: string) => {
 };
 
 const getMessages = async (): Promise<Ref<IMessageGroup[] | null>> => {
-    await throwDelay(2000);
 
-    messages.value = messageStore as IMessage[];
-    
-    groupedMessages.value = groupMessagesByDay(messages.value);
+    await setChatMessage(messageStore as IMessage[]);
+
+    const groupedMessages = await getGroupedChatMessage();
     
     return groupedMessages;
 }
 
 onMounted(async () => {
+    clearChatMessage();
     await getMessages();
-    contextArea.scrollToMessage.value = handleScrollToMessage; 
+    contextArea.scrollToMessage.value = handleScrollToMessage;
 });
 </script>

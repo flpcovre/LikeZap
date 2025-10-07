@@ -1,11 +1,13 @@
 export type MessageType = 'text' | 'audio' | 'image' | 'file';
 export type AttachmentsType = 'image' | 'file';
+export type MessageStatus = 'pending' | 'sent' | 'received' | 'failed';
 
 export type EventBusEvents = {
     addEmojiToTextArea: { native: any };
     toggleBlockInChatWrapper: boolean;
     changeDropdownTriggerValue: void;
     scrollToMessageInChatMain: string;
+    newMessageSent: void;
 };
 
 export type MessageComponent = {
@@ -39,6 +41,7 @@ export interface IMessage {
   content?: string;
   date: string;
   sender: IContact;
+  status: MessageStatus;
   replyTo?: string;
   attachments?: IAttachments;
   audio?: IAudio;

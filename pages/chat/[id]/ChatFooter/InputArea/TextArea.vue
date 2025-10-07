@@ -9,8 +9,10 @@
 
 <script setup lang="ts">
 import eventBus from '~/utils/eventBus';
+import { format } from "date-fns";
 
 const textarea = ref<HTMLTextAreaElement | null>(null);
+const { addMessage } = useChatMessage();
 
 const addEmojiToTextArea = (emoji: { native: any; }) => {
     if (textarea.value) {
@@ -35,7 +37,34 @@ const handleEnter = (event: any) => {
         }
     } else {
         event.preventDefault();
+        sendTextMessage();
     }
+}
+
+const sendTextMessage = async () => {
+    if (!textarea.value) return;
+
+    const text = textarea.value.value;
+
+    if (text.trim() == '') return;
+
+    await addMessage({
+        id: generateTempId(),
+        type: 'text',
+        content: text.trim(),
+        date: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
+        status: 'pending',
+        sender: {
+            id: 1,
+            type: 'user',
+            email: 'jdoe@gmail.com',
+            firstName: 'John',
+            lastName: 'Doe',
+        }
+    });
+
+    textarea.value.value = '';
+    resizeTextArea();
 }
 
 onMounted(() => {

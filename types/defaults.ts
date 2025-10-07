@@ -1,15 +1,16 @@
-import type { IConversation, IMessageGroup } from "./types"
+import type { IConversation, IMessage, IMessageGroup } from "./types"
 import { format, subDays } from "date-fns";
 import { groupMessagesByDay } from "../utils/utils";
 
 const now = new Date();
 
-export const messages = [
+export const messages: IMessage[] = [
     {
         id: '1',
         type: 'text' as const,
         content: 'Olá amigo',
         date: format(subDays(now, 3), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 1,
             type: 'customer',
@@ -23,6 +24,7 @@ export const messages = [
         type: 'text' as const,
         content: 'Ooi',
         date: format(subDays(now, 3), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 1,
             type: 'user',
@@ -36,6 +38,7 @@ export const messages = [
         type: 'image' as const,
         content: 'Segue em Anexo',
         date: format(subDays(now, 2), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 2,
             type: 'user',
@@ -55,6 +58,7 @@ export const messages = [
         id: '4',
         type: 'image' as const,
         date: format(subDays(now, 2), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 2,
             type: 'customer',
@@ -74,6 +78,7 @@ export const messages = [
         id: '5',
         type: 'audio' as const,
         date: format(subDays(now, 1), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 2,
             type: 'user',
@@ -91,6 +96,7 @@ export const messages = [
         id: '6',
         type: 'audio' as const,
         date: format(subDays(now, 1), "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 2,
             type: 'customer',
@@ -102,7 +108,6 @@ export const messages = [
             id: 1,
             size: '64MB',
             src: '/audio.mp3',
-            duration: '1:05'
         }
     },
     {
@@ -110,6 +115,7 @@ export const messages = [
         type: 'file' as const,
         date: format(now, "dd/MM/yyyy HH:mm:ss"),
         content: 'Segue em Anexo',
+        status: 'sent',
         sender: {
             id: 2,
             type: 'user',
@@ -129,6 +135,7 @@ export const messages = [
         id: '8',
         type: 'file' as const,
         date: format(now, "dd/MM/yyyy HH:mm:ss"),
+        status: 'sent',
         sender: {
             id: 2,
             type: 'customer',
